@@ -3020,22 +3020,30 @@
   <div class="price-inner">
     <div class="price-head">
       <span class="section-tag">PRICING</span>
-      <h2 class="price-title">シンプルで、<br>明快な料金体系。</h2>
-      <p class="price-body">すべてのプランにAI活用・デザイン・公開後サポートが含まれます。</p>
+      <h2 class="price-title">2つの選択肢、<br>明快な料金体系。</h2>
+      <p class="price-body">買い切り型とサブスク型から、ビジネスに合った形をお選びいただけます。</p>
     </div>
 
-    <div class="price-cards">
+    <!-- タブ切り替え -->
+    <div class="price-tabs" role="tablist" aria-label="料金プランタイプ">
+      <button class="price-tab active" data-tab="onetime" role="tab" aria-selected="true">買い切り型</button>
+      <button class="price-tab" data-tab="subscription" role="tab" aria-selected="false">サブスク型</button>
+    </div>
+
+    <!-- 買い切り型プラン -->
+    <div class="price-cards price-cards-onetime active" data-tab-content="onetime">
       <div class="price-card">
-        <div class="price-card-name">ライト</div>
-        <div class="price-card-price">¥<span>198,000</span><small>〜</small></div>
-        <p class="price-card-desc">スモールビジネス・個人事業向けのシンプルなコーポレートサイト。</p>
+        <div class="price-card-name">STARTER</div>
+        <div class="price-card-price">¥<span>248,000</span><small>〜</small></div>
+        <p class="price-card-desc">個人事業主・スタートアップ向けのコンパクトなコーポレートサイト。</p>
         <ul class="price-list">
           <li>ページ数：最大5ページ</li>
           <li>レスポンシブ対応</li>
           <li>お問い合わせフォーム</li>
+          <li>SEO基本設定</li>
           <li>公開後1ヶ月サポート</li>
         </ul>
-        <a class="btn-outline" href="#contact">相談してみる ↗</a>
+        <a class="btn-outline" href="/contact">相談してみる ↗</a>
       </div>
 
       <div class="price-card price-card--featured">
@@ -3043,36 +3051,297 @@
         <div class="price-morph-featured">
           <img src="/assets/morph_happy.png" alt="Morph featured" loading="lazy">
         </div>
-        <div class="price-card-name">スタンダード</div>
-        <div class="price-card-price">¥<span>398,000</span><small>〜</small></div>
-        <p class="price-card-desc">中小企業・成長フェーズのビジネスに最適な本格コーポレートサイト。</p>
+        <div class="price-card-name">STANDARD</div>
+        <div class="price-card-price">¥<span>498,000</span><small>〜</small></div>
+        <p class="price-card-desc">中小企業に最適な本格コーポレートサイト。AI設計でCV最大化。</p>
         <ul class="price-list">
           <li>ページ数：最大10ページ</li>
           <li>AI搭載コンテンツ設計</li>
-          <li>SEO基本設定</li>
-          <li>CMS導入（更新可能）</li>
+          <li>SEO強化設定</li>
+          <li>CMS導入（自社更新可）</li>
           <li>公開後3ヶ月サポート</li>
         </ul>
-        <a class="btn-primary" href="#contact">相談してみる ↗</a>
+        <a class="btn-primary" href="/contact">相談してみる ↗</a>
       </div>
 
       <div class="price-card">
-        <div class="price-card-name">プレミアム</div>
-        <div class="price-card-price">¥<span>698,000</span><small>〜</small></div>
-        <p class="price-card-desc">大規模・ブランディング重視の企業向けフルオーダー制作。</p>
+        <div class="price-card-name">PREMIUM</div>
+        <div class="price-card-price">¥<span>980,000</span><small>〜</small></div>
+        <p class="price-card-desc">大規模・ブランディング重視のフルオーダー制作。多店舗対応も可能。</p>
         <ul class="price-list">
           <li>ページ数：無制限</li>
-          <li>AI戦略コンサルティング</li>
+          <li>AI戦略コンサル付き</li>
           <li>フルオーダーデザイン</li>
           <li>多言語対応オプション</li>
           <li>公開後6ヶ月サポート</li>
         </ul>
-        <a class="btn-outline" href="#contact">相談してみる ↗</a>
+        <a class="btn-outline" href="/contact">相談してみる ↗</a>
       </div>
     </div>
+
+    <!-- サブスク型プラン -->
+    <div class="price-cards price-cards-subscription" data-tab-content="subscription">
+      <div class="price-card">
+        <div class="price-card-name">LITE</div>
+        <div class="price-card-price-sub">
+          <span class="price-monthly">¥<span>19,800</span><small>/月</small></span>
+          <span class="price-initial">＋ 初期 ¥49,800</span>
+        </div>
+        <p class="price-card-desc">月額重視・キャッシュフロー優先の小規模事業者向け。</p>
+        <ul class="price-list">
+          <li>ページ数：最大5ページ</li>
+          <li>レスポンシブ対応</li>
+          <li>月1回までの軽微な更新</li>
+          <li>サーバー・ドメイン込み</li>
+          <li>解約金・最低契約期間なし</li>
+        </ul>
+        <a class="btn-outline" href="/contact">相談してみる ↗</a>
+      </div>
+
+      <div class="price-card price-card--featured">
+        <div class="price-card-badge">人気No.1</div>
+        <div class="price-morph-featured">
+          <img src="/assets/morph_happy.png" alt="Morph featured" loading="lazy">
+        </div>
+        <div class="price-card-name">STANDARD</div>
+        <div class="price-card-price-sub">
+          <span class="price-monthly">¥<span>29,800</span><small>/月</small></span>
+          <span class="price-initial">＋ 初期 ¥98,000</span>
+        </div>
+        <p class="price-card-desc">中小企業の成長を支える運用サポート込みのスタンダードプラン。</p>
+        <ul class="price-list">
+          <li>ページ数：最大10ページ</li>
+          <li>月3回までの更新対応</li>
+          <li>SEO基本設定</li>
+          <li>アクセス解析レポート</li>
+          <li>サーバー・ドメイン込み</li>
+        </ul>
+        <a class="btn-primary" href="/contact">相談してみる ↗</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-card-name">PRO</div>
+        <div class="price-card-price-sub">
+          <span class="price-monthly">¥<span>49,800</span><small>/月</small></span>
+          <span class="price-initial">＋ 初期 ¥198,000</span>
+        </div>
+        <p class="price-card-desc">無制限ページ・専属対応・運用伴走型のプロフェッショナルプラン。</p>
+        <ul class="price-list">
+          <li>ページ数：無制限</li>
+          <li>無制限の更新対応</li>
+          <li>SEO継続最適化</li>
+          <li>月次戦略ミーティング</li>
+          <li>専用ダッシュボード</li>
+        </ul>
+        <a class="btn-outline" href="/contact">相談してみる ↗</a>
+      </div>
+    </div>
+
+    <!-- オプション一覧 -->
+    <div class="price-options">
+      <h3 class="price-options-title">追加オプション</h3>
+      <div class="price-options-grid">
+        <div class="price-option-item">
+          <div class="price-option-name">ページ追加</div>
+          <div class="price-option-price">¥30,000<small>/ページ</small></div>
+        </div>
+        <div class="price-option-item">
+          <div class="price-option-name">AI診断機能</div>
+          <div class="price-option-price">¥80,000</div>
+        </div>
+        <div class="price-option-item">
+          <div class="price-option-name">多言語対応</div>
+          <div class="price-option-price">¥120,000<small>/言語</small></div>
+        </div>
+        <div class="price-option-item">
+          <div class="price-option-name">EC連携</div>
+          <div class="price-option-price">¥150,000</div>
+        </div>
+        <div class="price-option-item">
+          <div class="price-option-name">写真撮影</div>
+          <div class="price-option-price">¥30,000<small>/回</small></div>
+        </div>
+        <div class="price-option-item">
+          <div class="price-option-name">コピーライティング</div>
+          <div class="price-option-price">¥50,000<small>〜</small></div>
+        </div>
+      </div>
+    </div>
+
     <p class="price-note">※ 表示価格はすべて税抜き表示です。詳細はお気軽にご相談ください。</p>
   </div>
 </section>
+
+<style>
+  /* ══ プランタブ切替 ══ */
+  .price-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 48px;
+    background: #f4f4f2;
+    padding: 6px;
+    border-radius: 50px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .price-tab {
+    padding: 12px 32px;
+    background: transparent;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .price-tab:hover {
+    color: #0d0d0d;
+  }
+
+  .price-tab.active {
+    background: #0d0d0d;
+    color: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  /* タブコンテンツ */
+  .price-cards {
+    display: none;
+  }
+
+  .price-cards.active {
+    display: grid;
+  }
+
+  /* サブスク用の価格表示 */
+  .price-card-price-sub {
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .price-monthly {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #0d0d0d;
+    margin-bottom: 6px;
+  }
+
+  .price-monthly small {
+    font-size: 14px;
+    font-weight: 500;
+    color: #888;
+  }
+
+  .price-initial {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+  }
+
+  .price-card--featured .price-monthly {
+    color: #ff9acc;
+  }
+
+  .price-card--featured .price-monthly small,
+  .price-card--featured .price-initial {
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* オプション ── */
+  .price-options {
+    margin-top: 64px;
+    padding: 40px;
+    background: #faf9fc;
+    border-radius: 20px;
+    border: 1px solid #ece9f2;
+  }
+
+  .price-options-title {
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .price-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .price-option-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #ece9f2;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .price-option-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(180,150,220,0.12);
+  }
+
+  .price-option-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d0d0d;
+  }
+
+  .price-option-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #d85a80;
+  }
+
+  .price-option-price small {
+    font-size: 11px;
+    font-weight: 500;
+    color: #888;
+    margin-left: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .price-options-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .price-tab { padding: 10px 22px; font-size: 13px; }
+    .price-options { padding: 24px; }
+    .price-options-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  /* タブ切替ロジック */
+  document.querySelectorAll('.price-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetTab = tab.dataset.tab;
+      document.querySelectorAll('.price-tab').forEach(t => {
+        t.classList.toggle('active', t === tab);
+        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-tab-content]').forEach(content => {
+        content.classList.toggle('active', content.dataset.tabContent === targetTab);
+      });
+    });
+  });
+</script>
 
 <!-- ══════════════════════════════════════════
      ⑨ FAQ - 不安解消
@@ -3490,25 +3759,104 @@
 </style>
 
 <footer>
-  <div class="footer-inner">
-    <div>
+  <div class="footer-inner footer-inner-rich">
+    <div class="footer-brand-block">
       <div class="footer-logo">
         <div class="footer-logo-icon">
           <img src="/assets/morphe_m_only.png" alt="MORPHE">
         </div>
         <span class="footer-company-text">MORPHE株式会社</span>
       </div>
+      <p class="footer-tagline-rich">
+        札幌発・AI×Webデザインカンパニー。<br>
+        AIとデザインの力で、企業の未来をデザインします。
+      </p>
       <div class="footer-info">
-        〒060-0000 北海道札幌市中央区南6条西3丁目 仮住所1丁目<br>
-        © MORPHE Co., Ltd. All Rights Reserved.
+        〒060-0000 北海道札幌市中央区南6条西3丁目<br>
+        © 2026 MORPHE Co., Ltd. All Rights Reserved.
       </div>
     </div>
-    <div class="footer-links">
+    <div class="footer-col-block">
+      <div class="footer-col-title">SERVICE</div>
+      <ul class="footer-col-list">
+        <li><a href="#service">Webサイト制作</a></li>
+        <li><a href="#service">LP制作</a></li>
+        <li><a href="#service">AIコンサル</a></li>
+      </ul>
+    </div>
+    <div class="footer-col-block">
+      <div class="footer-col-title">COMPANY</div>
+      <ul class="footer-col-list">
+        <li><a href="/">トップページ</a></li>
+        <li><a href="/about">私たちについて</a></li>
+        <li><a href="/works">制作実績</a></li>
+        <li><a href="#pricing">料金プラン</a></li>
+      </ul>
+    </div>
+    <div class="footer-col-block">
+      <div class="footer-col-title">CONTACT</div>
+      <ul class="footer-col-list">
+        <li><a href="/contact">無料相談</a></li>
+        <li><a href="mailto:hello@morphe.jp">hello@morphe.jp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom-bar">
+    <div class="footer-legal-wrap">
       <a href="/privacy">プライバシーポリシー</a>
       <a href="/tokushoho">特定商取引法に基づく表記</a>
     </div>
   </div>
 </footer>
+
+<style>
+  /* リッチフッター */
+  .footer-inner-rich {
+    display: grid !important;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .footer-brand-block { display: flex; flex-direction: column; gap: 16px; }
+  .footer-tagline-rich {
+    font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.8;
+  }
+  .footer-col-block { display: flex; flex-direction: column; }
+  .footer-col-title {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; color: rgba(255,255,255,0.5); margin-bottom: 16px;
+  }
+  .footer-col-list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .footer-col-list a {
+    font-size: 13px; color: rgba(255,255,255,0.7);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col-list a:hover { color: white; }
+  .footer-bottom-bar {
+    max-width: 1200px; margin: 32px auto 0;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: flex-end;
+  }
+  .footer-legal-wrap { display: flex; gap: 24px; }
+  .footer-legal-wrap a {
+    font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;
+  }
+  .footer-legal-wrap a:hover { color: white; }
+
+  @media (max-width: 900px) {
+    .footer-inner-rich {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 32px 24px !important;
+    }
+    .footer-bottom-bar { justify-content: center; margin-top: 24px; }
+  }
+  @media (max-width: 600px) {
+    .footer-inner-rich { grid-template-columns: 1fr !important; }
+  }
+</style>
 
 <!-- ══════════════════════════════════════════
      UTILITIES - カスタムカーソル & スクロール進捗

@@ -6,186 +6,325 @@
   <title>制作実績 | MORPHE株式会社</title>
   <meta name="description" content="MORPHE株式会社のWeb制作・LP制作の実績ギャラリー。札幌の中小企業様の成果事例を紹介。">
 
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="制作実績 | MORPHE株式会社">
+  <meta property="og:description" content="MORPHE株式会社のWeb制作・LP制作の実績ギャラリー。">
+  <meta property="og:url" content="https://morphe-phi.vercel.app/works">
+
   <link rel="icon" type="image/png" href="/assets/morphe_m_only.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/shared/global.css">
-
   <style>
-    .works-page {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 40px 120px;
+    :root {
+      --black: #0d0d0d;
+      --white: #fafafa;
+      --gray: #6b6b6b;
+      --light-gray: #f4f4f2;
+      --border: #e4e4e2;
     }
-
-    .works-header {
-      text-align: center;
-      margin-bottom: 56px;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--white); color: var(--black);
+      line-height: 1.7; -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    .works-tag {
+    /* NAV（共通） */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,250,0.85);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
+    .nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .logo-morphe { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800; letter-spacing: 0.18em; color: var(--black); }
+    .logo-kaisha { font-size: 9px; font-weight: 500; color: var(--gray); letter-spacing: 0.1em; margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--black); transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 0.6; }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--black); color: var(--white);
+      padding: 10px 20px; border-radius: 50px;
+      font-size: 13px; font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+    /* HERO */
+    .works-hero {
+      position: relative; padding: 100px 40px 80px;
+      text-align: center; overflow: hidden;
+    }
+    .works-hero-bg {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70vmin; height: 70vmin; max-width: 600px;
+      background: radial-gradient(circle at 30% 30%,
+        rgba(255,154,204,0.2) 0%, rgba(160,176,255,0.15) 40%,
+        rgba(201,160,255,0.1) 70%, transparent 90%);
+      border-radius: 50%; filter: blur(40px);
+      animation: blobFloat 12s ease-in-out infinite; z-index: 0;
+    }
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50%      { transform: translate(-50%, -55%) scale(1.05); }
+    }
+    .works-hero-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
+    .works-hero-tag {
       display: inline-block;
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      color: var(--purple-2);
-      margin-bottom: 14px;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.4em; color: #a08ac8; margin-bottom: 24px;
+      opacity: 0; animation: fadeInDown 0.8s 0.1s ease-out forwards;
+    }
+    .works-hero-title {
+      font-size: clamp(36px, 6vw, 64px); font-weight: 900;
+      line-height: 1.3; letter-spacing: -0.02em;
+      margin-bottom: 24px; opacity: 0;
+      animation: fadeInDown 0.9s 0.4s ease-out forwards;
+    }
+    .works-hero-title .accent {
+      background: linear-gradient(135deg, #d85a80 0%, #8b6ec8 50%, #5a8ad0 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .works-hero-lead {
+      font-size: 15px; color: var(--gray); line-height: 1.95;
+      opacity: 0; animation: fadeInDown 0.9s 0.7s ease-out forwards;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .works-title {
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 900;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-      margin-bottom: 16px;
-    }
-
-    .works-title .accent {
-      background: linear-gradient(135deg, var(--pink-1), var(--purple-1));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .works-lead {
-      font-size: 15px;
-      color: var(--gray);
-      line-height: 1.95;
-    }
-
+    /* WORKS GRID */
+    .works-grid-section { max-width: 1200px; margin: 0 auto; padding: 60px 40px 100px; }
     .works-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 64px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
     }
-
     .work-card {
       background: linear-gradient(135deg, #1a1a2a 0%, #0d0d0d 100%);
-      border-radius: 20px;
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      position: relative;
-      transition: transform 0.4s, box-shadow 0.4s;
+      border-radius: 20px; overflow: hidden;
+      aspect-ratio: 4 / 5; position: relative;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s;
       cursor: pointer;
     }
-
     .work-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 30px 60px rgba(0,0,0,0.2);
     }
-
-    .work-card-bg {
-      position: absolute;
-      inset: 0;
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
+    .work-card-bg { position: absolute; inset: 0; opacity: 0.6; pointer-events: none; }
     .work-card:nth-child(1) .work-card-bg { background: radial-gradient(circle at 30% 30%, rgba(255,154,204,0.4), transparent 70%); }
     .work-card:nth-child(2) .work-card-bg { background: radial-gradient(circle at 70% 30%, rgba(160,180,255,0.4), transparent 70%); }
     .work-card:nth-child(3) .work-card-bg { background: radial-gradient(circle at 50% 50%, rgba(255,200,160,0.4), transparent 70%); }
     .work-card:nth-child(4) .work-card-bg { background: radial-gradient(circle at 30% 70%, rgba(190,150,255,0.4), transparent 70%); }
     .work-card:nth-child(5) .work-card-bg { background: radial-gradient(circle at 70% 70%, rgba(160,200,255,0.4), transparent 70%); }
     .work-card:nth-child(6) .work-card-bg { background: radial-gradient(circle at 50% 30%, rgba(255,160,200,0.4), transparent 70%); }
-
     .work-card-content {
-      position: relative;
-      z-index: 2;
-      padding: 28px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: white;
+      position: relative; z-index: 2; padding: 28px;
+      height: 100%; display: flex; flex-direction: column;
+      justify-content: space-between; color: white;
     }
-
     .work-card-tag {
       display: inline-block;
-      font-family: 'Inter', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: rgba(255,255,255,0.7);
-      padding: 4px 10px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 12px;
-      align-self: flex-start;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.15em; color: rgba(255,255,255,0.7);
+      padding: 4px 10px; background: rgba(255,255,255,0.1);
+      border-radius: 12px; align-self: flex-start;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     }
-
     .work-card-title {
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1.4;
-      margin-bottom: 8px;
+      font-size: 22px; font-weight: 900; line-height: 1.4; margin-bottom: 8px;
     }
-
     .work-card-stat {
-      font-family: 'Inter', sans-serif;
-      font-size: 32px;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--pink-2), var(--blue-2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 900;
+      background: linear-gradient(135deg, #ff9acc, #a0b0ff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
       margin-top: 12px;
     }
-
     .work-card-stat-label {
-      font-size: 11px;
-      color: rgba(255,255,255,0.6);
+      font-size: 11px; color: rgba(255,255,255,0.6);
     }
 
-    .works-cta-block {
-      text-align: center;
-      padding: 56px;
-      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2a 100%);
-      border-radius: 24px;
-      color: white;
+    /* CTA */
+    .works-cta-section {
       position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2a 100%);
+      color: white; padding: 100px 40px;
+      overflow: hidden; text-align: center;
     }
-
-    .works-cta-block::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+    .works-cta-section::before {
+      content: ''; position: absolute; inset: 0;
       background: radial-gradient(circle at 30% 30%, rgba(255,154,204,0.15), transparent 50%),
                   radial-gradient(circle at 70% 70%, rgba(160,180,255,0.15), transparent 50%);
       pointer-events: none;
     }
-
-    .works-cta-content {
-      position: relative;
-      z-index: 2;
+    .works-cta-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
+    .works-cta-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.3em; color: #ff9acc; margin-bottom: 16px;
     }
-
     .works-cta-title {
-      font-size: 28px;
-      font-weight: 900;
-      margin-bottom: 16px;
+      font-size: clamp(28px, 4vw, 40px); font-weight: 900;
+      line-height: 1.4; margin-bottom: 20px;
     }
-
+    .works-cta-title .accent {
+      background: linear-gradient(135deg, #ff9acc 0%, #a0b0ff 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
     .works-cta-body {
-      font-size: 14px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.95;
-      margin-bottom: 28px;
+      font-size: 14px; color: rgba(255,255,255,0.7);
+      line-height: 1.95; margin-bottom: 32px;
+    }
+    .works-cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #ff9acc, #a0b0ff);
+      color: var(--black); padding: 18px 36px; border-radius: 50px;
+      font-size: 15px; font-weight: 700;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .works-cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(255,154,204,0.3);
     }
 
+    /* FOOTER */
+    footer {
+      background: var(--black); color: rgba(255,255,255,0.7);
+      padding: 60px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand-block { display: flex; flex-direction: column; gap: 16px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; }
+    .footer-logo-icon { width: 32px; height: 32px; flex-shrink: 0; }
+    .footer-logo-icon img { width: 100%; height: 100%; object-fit: contain; filter: invert(1) brightness(2); }
+    .footer-company-text { font-size: 14px; font-weight: 700; color: white; letter-spacing: 0.05em; }
+    .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.8; }
+    .footer-col-title {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; color: rgba(255,255,255,0.5); margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: rgba(255,255,255,0.4);
+    }
+    .footer-legal-links { display: flex; gap: 24px; list-style: none; }
+    .footer-legal-links a { color: rgba(255,255,255,0.5); }
+    .footer-legal-links a:hover { color: white; }
+
+    /* 進化モーフ + フローティングCTA */
+    #morph-evolution {
+      position: fixed; bottom: 24px; right: 24px; z-index: 95;
+      width: 88px; height: 88px; cursor: pointer;
+      opacity: 0; transform: translateY(20px) scale(0.8);
+      transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    #morph-evolution.visible { opacity: 1; transform: translateY(0) scale(1); }
+    .morph-evo-ring {
+      position: absolute; inset: -8px; border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: rgba(216, 90, 128, 0.5);
+      border-right-color: rgba(160, 130, 255, 0.4);
+      animation: ringSpin 4s linear infinite; pointer-events: none;
+    }
+    @keyframes ringSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .morph-evo-bubble {
+      position: absolute; bottom: 100%; right: 0; margin-bottom: 12px;
+      background: rgba(13,13,13,0.95); color: white;
+      padding: 8px 14px; border-radius: 14px 14px 4px 14px;
+      font-size: 11px; font-weight: 600; white-space: nowrap;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s; pointer-events: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    #morph-evolution.show-bubble .morph-evo-bubble { opacity: 1; transform: translateY(0); }
+    .morph-evo-img { width: 100%; height: 100%; position: relative; }
+    .morph-evo-img img {
+      width: 100%; height: 100%; object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(180,150,220,0.4));
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4,0,0.2,1);
+      animation: morphFloatTiny 3s ease-in-out infinite;
+    }
+    @keyframes morphFloatTiny {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-4px); }
+    }
+    .morph-evo-stage-label {
+      position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+      font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700;
+      letter-spacing: 0.15em; color: rgba(216, 90, 128, 0.8);
+      background: rgba(255,255,255,0.95); padding: 3px 8px; border-radius: 8px;
+      white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      opacity: 0; transition: opacity 0.4s; pointer-events: none;
+    }
+    #morph-evolution.show-bubble .morph-evo-stage-label { opacity: 1; }
+
+    .floating-cta {
+      position: fixed; bottom: 24px; left: 24px; z-index: 90;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--black) 0%, #1a1a2a 100%);
+      color: white; padding: 14px 22px; border-radius: 50px;
+      font-size: 13px; font-weight: 600;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+      transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s;
+      opacity: 0; transform: translateY(20px); pointer-events: none;
+    }
+    .floating-cta.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .floating-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+    .floating-cta-pulse { width: 8px; height: 8px; border-radius: 50%; background: #ff9acc; position: relative; }
+    .floating-cta-pulse::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 50%;
+      background: #ff9acc; opacity: 0.4;
+      animation: pulseDot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50%      { transform: scale(1.6); opacity: 0; }
+    }
+
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; width: 0; height: 3px;
+      background: linear-gradient(90deg, #d85a80, #a08ac8, #a0b0ff);
+      z-index: 200; transition: width 0.05s linear;
+    }
+
+    /* レスポンシブ */
     @media (max-width: 900px) {
-      .works-page { padding: 56px 24px 80px; }
+      nav { padding: 0 20px; gap: 16px; height: 60px; }
+      .nav-links { display: none; }
+      .works-hero { padding: 64px 24px 48px; }
+      .works-grid-section { padding: 40px 24px 64px; }
       .works-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .works-cta-section { padding: 72px 24px; }
+      footer { padding: 48px 24px 24px; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      #morph-evolution { width: 64px; height: 64px; bottom: 16px; right: 16px; }
+      .floating-cta { bottom: 16px; left: 16px; padding: 10px 16px; font-size: 12px; }
     }
-
     @media (max-width: 600px) {
       .works-grid { grid-template-columns: 1fr; }
-      .works-cta-block { padding: 32px 24px; }
+      .footer-inner { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -193,7 +332,7 @@
 
 <div id="scroll-progress"></div>
 
-<nav class="global-nav">
+<nav>
   <a href="/" class="nav-logo">
     <div class="nav-logo-icon"><img src="/assets/morphe_m_only.png" alt="MORPHE"></div>
     <div class="nav-logo-text">
@@ -211,18 +350,22 @@
   <a href="/contact" class="nav-cta">無料相談 ↗</a>
 </nav>
 
-<div class="works-page">
-  <div class="works-header">
-    <span class="works-tag">WORKS</span>
-    <h1 class="works-title">
+<section class="works-hero">
+  <div class="works-hero-bg"></div>
+  <div class="works-hero-inner">
+    <div class="works-hero-tag">WORKS</div>
+    <h1 class="works-hero-title">
       成果を生む、<br>
       <span class="accent">デザインを。</span>
     </h1>
-    <p class="works-lead">
-      MORPHEがこれまでに手掛けた制作実績の一部をご紹介します。
+    <p class="works-hero-lead">
+      MORPHEがこれまでに手掛けた制作実績の一部をご紹介します。<br>
+      数値が物語る、デザインの力。
     </p>
   </div>
+</section>
 
+<section class="works-grid-section">
   <div class="works-grid">
     <div class="work-card">
       <div class="work-card-bg"></div>
@@ -296,26 +439,28 @@
       </div>
     </div>
   </div>
+</section>
 
-  <div class="works-cta-block">
-    <div class="works-cta-content">
-      <h2 class="works-cta-title">あなたの実績も、<br>ここに加えませんか？</h2>
-      <p class="works-cta-body">
-        MORPHEと一緒に、ビジネスの未来をデザインしましょう。<br>
-        まずはお気軽にご相談ください。
-      </p>
-      <a href="/contact" class="contact-cta-button" style="display:inline-flex; align-items:center; gap:8px; background: linear-gradient(135deg, var(--pink-2), var(--blue-2)); color: var(--black); padding: 18px 36px; border-radius: 50px; font-size: 15px; font-weight: 700; text-decoration: none;">無料で相談してみる ↗</a>
-    </div>
+<section class="works-cta-section">
+  <div class="works-cta-inner">
+    <span class="works-cta-tag">CONTACT</span>
+    <h2 class="works-cta-title">
+      あなたの実績も、<br>
+      <span class="accent">ここに加えませんか？</span>
+    </h2>
+    <p class="works-cta-body">
+      MORPHEと一緒に、ビジネスの未来をデザインしましょう。<br>
+      まずはお気軽にご相談ください。
+    </p>
+    <a href="/contact" class="works-cta-btn">無料で相談してみる ↗</a>
   </div>
-</div>
+</section>
 
-<footer class="global-footer">
+<footer>
   <div class="footer-inner">
-    <div class="footer-brand">
+    <div class="footer-brand-block">
       <div class="footer-logo">
-        <div class="footer-logo-icon">
-          <img src="/assets/morphe_m_only.png" alt="MORPHE">
-        </div>
+        <div class="footer-logo-icon"><img src="/assets/morphe_m_only.png" alt="MORPHE"></div>
         <span class="footer-company-text">MORPHE株式会社</span>
       </div>
       <p class="footer-tagline">
@@ -326,17 +471,18 @@
     <div class="footer-col">
       <div class="footer-col-title">SERVICE</div>
       <ul>
-        <li><a href="/lp/web-design">Webサイト制作</a></li>
-        <li><a href="/lp/lp-design">LP制作</a></li>
-        <li><a href="/lp/ai-consulting">AIコンサル</a></li>
+        <li><a href="/#service">Webサイト制作</a></li>
+        <li><a href="/#service">LP制作</a></li>
+        <li><a href="/#service">AIコンサル</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">COMPANY</div>
       <ul>
-        <li><a href="/#about">私たちについて</a></li>
+        <li><a href="/">トップページ</a></li>
+        <li><a href="/about">私たちについて</a></li>
         <li><a href="/works">制作実績</a></li>
-        <li><a href="/#plan">料金プラン</a></li>
+        <li><a href="/#pricing">料金プラン</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -366,11 +512,87 @@
   <div class="morph-evo-stage-label" id="morphStageLabel">STAGE 0</div>
   <div class="morph-evo-bubble" id="morphBubble">こんにちは！</div>
   <div class="morph-evo-img">
-    <img id="morphEvoImg" data-assets-base="/assets" src="/assets/morph_egg.png" alt="進化するモーフ">
+    <img id="morphEvoImg" src="/assets/morph_egg.png" alt="進化するモーフ">
   </div>
 </div>
 
-<script src="/shared/global.js"></script>
+<script>
+(function() {
+  'use strict';
+  const bar = document.getElementById('scroll-progress');
+  const morphEvo = document.getElementById('morph-evolution');
+  const morphEvoImg = document.getElementById('morphEvoImg');
+  const morphStageLabel = document.getElementById('morphStageLabel');
+  const morphBubble = document.getElementById('morphBubble');
+  const floatingCTA = document.querySelector('.floating-cta');
+  if (!morphEvo) return;
+
+  const morphStages = [
+    { threshold: 0.00, src: '/assets/morph_egg.png',       label: 'STAGE 0', bubble: 'まだ眠っています…' },
+    { threshold: 0.04, src: '/assets/morph_hatching.png',  label: 'STAGE 1', bubble: '生まれます！' },
+    { threshold: 0.10, src: '/assets/morph_idle.png',      label: 'STAGE 2', bubble: 'こんにちは！' },
+    { threshold: 0.25, src: '/assets/morph_worried.png',   label: 'STAGE 3', bubble: 'わかります…' },
+    { threshold: 0.40, src: '/assets/morph_tools.png',     label: 'STAGE 4', bubble: '解決しよう！' },
+    { threshold: 0.55, src: '/assets/morph_design.png',    label: 'STAGE 5', bubble: '創造の時間！' },
+    { threshold: 0.70, src: '/assets/morph_thinking.png',  label: 'STAGE 6', bubble: '一緒に考えよう' },
+    { threshold: 0.82, src: '/assets/morph_happy.png',     label: 'STAGE 7', bubble: '嬉しい！' },
+    { threshold: 0.92, src: '/assets/morph_ascended.png',  label: 'STAGE 8', bubble: '完全進化！' },
+    { threshold: 0.97, src: '/assets/morph_welcome.png',   label: 'STAGE 9', bubble: 'ようこそ！' }
+  ];
+
+  let currentStageIndex = 0;
+  let bubbleTimeoutId = null;
+
+  function updateMorphStage(progress) {
+    let newStageIndex = 0;
+    for (let i = morphStages.length - 1; i >= 0; i--) {
+      if (progress >= morphStages[i].threshold) { newStageIndex = i; break; }
+    }
+    if (newStageIndex !== currentStageIndex) {
+      currentStageIndex = newStageIndex;
+      const stage = morphStages[newStageIndex];
+      morphEvoImg.style.opacity = '0';
+      morphEvoImg.style.transform = 'scale(0.7)';
+      setTimeout(() => {
+        morphEvoImg.src = stage.src;
+        morphEvoImg.style.opacity = '1';
+        morphEvoImg.style.transform = 'scale(1)';
+      }, 250);
+      morphStageLabel.textContent = stage.label;
+      morphBubble.textContent = stage.bubble;
+      morphEvo.classList.add('show-bubble');
+      clearTimeout(bubbleTimeoutId);
+      bubbleTimeoutId = setTimeout(() => morphEvo.classList.remove('show-bubble'), 2200);
+    }
+  }
+
+  let ticking = false;
+  function handleScroll() {
+    if (ticking) return;
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = scrollY / Math.max(totalHeight, 1);
+      if (bar) bar.style.width = (progress * 100) + '%';
+      const showMorph = scrollY > 300;
+      morphEvo.classList.toggle('visible', showMorph);
+      if (floatingCTA) floatingCTA.classList.toggle('visible', showMorph);
+      if (showMorph) updateMorphStage(progress);
+      ticking = false;
+    });
+    ticking = true;
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  morphEvo.addEventListener('click', () => {
+    morphEvo.classList.add('show-bubble');
+    clearTimeout(bubbleTimeoutId);
+    bubbleTimeoutId = setTimeout(() => morphEvo.classList.remove('show-bubble'), 2200);
+  });
+})();
+</script>
 
 </body>
 </html>
