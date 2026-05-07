@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>無料相談 | MORPHE株式会社</title>
+  <meta name="description" content="MORPHE株式会社への無料相談・お問い合わせ。Web制作・LP制作・AIコンサルティングのご相談を承ります。">
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" type="image/png" href="/assets/morphe_m_only.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/shared/global.css">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       Contactページ
+       ═══════════════════════════════════════════ */
+    body {
+      background: linear-gradient(180deg, var(--white) 0%, #faf9fc 100%);
+      min-height: 100vh;
+    }
+
+    .contact-page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .contact-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--purple-2);
+      margin-bottom: 14px;
+    }
+
+    .contact-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .contact-title .accent {
+      background: linear-gradient(135deg, var(--pink-1), var(--purple-1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .contact-lead {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.95;
+    }
+
+    /* 安心感の3点セット */
+    .contact-trust {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .contact-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    .contact-trust-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-2), var(--blue-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    /* フォーム本体 */
+    .contact-form-wrap {
+      background: white;
+      padding: 48px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(180,150,220,0.12);
+      border: 1px solid var(--border);
+    }
+
+    .form-row {
+      margin-bottom: 28px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .form-label-required {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--pink-1);
+      background: rgba(216,90,128,0.1);
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .form-label-optional {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gray);
+      background: var(--light-gray);
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--black);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--pink-2);
+      box-shadow: 0 0 0 4px rgba(255,154,204,0.12);
+    }
+
+    .form-textarea {
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.7;
+    }
+
+    /* チェックボックス（複数選択） */
+    .form-checkbox-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .form-checkbox-item {
+      position: relative;
+    }
+
+    .form-checkbox-item input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .form-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      color: var(--black);
+    }
+
+    .form-checkbox-item:hover .form-checkbox-label {
+      border-color: var(--purple-2);
+    }
+
+    .form-checkbox-item input[type="checkbox"]:checked + .form-checkbox-label {
+      background: linear-gradient(135deg, rgba(255,154,204,0.05), rgba(160,176,255,0.05));
+      border-color: var(--pink-1);
+    }
+
+    .form-checkbox-box {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #c9c0e0;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .form-checkbox-item input[type="checkbox"]:checked + .form-checkbox-label .form-checkbox-box {
+      background: linear-gradient(135deg, var(--pink-2), var(--blue-2));
+      border-color: transparent;
+    }
+
+    .form-checkbox-item input[type="checkbox"]:checked + .form-checkbox-label .form-checkbox-box::after {
+      content: '✓';
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    /* ラジオ（単一選択） */
+    .form-radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .form-radio-item input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .form-radio-label {
+      display: inline-block;
+      padding: 10px 18px;
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      color: var(--black);
+    }
+
+    .form-radio-item input[type="radio"]:checked + .form-radio-label {
+      background: var(--black);
+      color: white;
+      border-color: var(--black);
+    }
+
+    /* 同意チェック */
+    .form-agreement {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 16px;
+      background: var(--light-gray);
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+
+    .form-agreement input[type="checkbox"] {
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .form-agreement label {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.6;
+      cursor: pointer;
+    }
+
+    .form-agreement a {
+      color: var(--purple-1);
+      text-decoration: underline;
+    }
+
+    /* 送信ボタン */
+    .form-submit {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--black) 0%, #1a1a2a 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .form-submit:hover::before { left: 100%; }
+
+    .form-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* 送信成功画面 */
+    .contact-success {
+      display: none;
+      text-align: center;
+      padding: 60px 40px;
+    }
+
+    .contact-success.visible {
+      display: block;
+    }
+
+    .contact-success-morph {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 24px;
+      filter: drop-shadow(0 20px 40px rgba(180,150,220,0.4));
+      animation: charFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes charFloat {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+
+    .contact-success-title {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .contact-success-body {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.95;
+      margin-bottom: 32px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 600px) {
+      .contact-page { padding: 40px 20px 80px; }
+      .contact-form-wrap { padding: 28px 20px; }
+      .contact-trust { gap: 16px; }
+      .contact-trust-item { font-size: 11px; }
+      .form-checkbox-group { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav class="global-nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">
+      <img src="/assets/morphe_m_only.png" alt="MORPHE">
+    </div>
+    <div class="nav-logo-text">
+      <span class="logo-morphe">MORPHE</span>
+      <span class="logo-kaisha">株式会社</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#service">Service</a></li>
+    <li><a href="/#works">Works</a></li>
+    <li><a href="/#plan">Plan</a></li>
+    <li><a href="/#flow">Flow</a></li>
+  </ul>
+  <a href="/contact" class="nav-cta">無料相談 ↗</a>
+</nav>
+
+<div class="contact-page">
+  <div class="contact-header">
+    <span class="contact-tag">CONTACT</span>
+    <h1 class="contact-title">
+      まずは、<br>
+      <span class="accent">お話を聞かせてください。</span>
+    </h1>
+    <p class="contact-lead">
+      Webサイトのお悩み・ご相談は何でもお気軽にどうぞ。<br>
+      24時間以内にご返信いたします。
+    </p>
+  </div>
+
+  <div class="contact-trust">
+    <div class="contact-trust-item">
+      <span class="contact-trust-icon">¥</span>
+      <span>完全無料</span>
+    </div>
+    <div class="contact-trust-item">
+      <span class="contact-trust-icon">✓</span>
+      <span>営業電話なし</span>
+    </div>
+    <div class="contact-trust-item">
+      <span class="contact-trust-icon">⏱</span>
+      <span>24時間以内に返信</span>
+    </div>
+  </div>
+
+  <!-- フォーム本体 -->
+  <div class="contact-form-wrap" id="formWrap">
+    <form id="contactForm" method="POST" action="/api/contact" novalidate>
+
+      <div class="form-row">
+        <label class="form-label" for="name">
+          お名前
+          <span class="form-label-required">必須</span>
+        </label>
+        <input type="text" id="name" name="name" class="form-input" required placeholder="山田 太郎">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="company">
+          会社名
+          <span class="form-label-optional">任意</span>
+        </label>
+        <input type="text" id="company" name="company" class="form-input" placeholder="株式会社○○">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="email">
+          メールアドレス
+          <span class="form-label-required">必須</span>
+        </label>
+        <input type="email" id="email" name="email" class="form-input" required placeholder="example@morphe.jp">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="phone">
+          電話番号
+          <span class="form-label-optional">任意</span>
+        </label>
+        <input type="tel" id="phone" name="phone" class="form-input" placeholder="011-XXX-XXXX">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">
+          ご相談内容（複数選択可）
+          <span class="form-label-required">必須</span>
+        </label>
+        <div class="form-checkbox-group">
+          <div class="form-checkbox-item">
+            <input type="checkbox" id="topic-corporate" name="topic" value="コーポレートサイト">
+            <label class="form-checkbox-label" for="topic-corporate">
+              <span class="form-checkbox-box"></span>
+              <span>コーポレートサイト制作</span>
+            </label>
+          </div>
+          <div class="form-checkbox-item">
+            <input type="checkbox" id="topic-lp" name="topic" value="LP制作">
+            <label class="form-checkbox-label" for="topic-lp">
+              <span class="form-checkbox-box"></span>
+              <span>LP（ランディングページ）制作</span>
+            </label>
+          </div>
+          <div class="form-checkbox-item">
+            <input type="checkbox" id="topic-renewal" name="topic" value="サイトリニューアル">
+            <label class="form-checkbox-label" for="topic-renewal">
+              <span class="form-checkbox-box"></span>
+              <span>既存サイトのリニューアル</span>
+            </label>
+          </div>
+          <div class="form-checkbox-item">
+            <input type="checkbox" id="topic-ai" name="topic" value="AIコンサル">
+            <label class="form-checkbox-label" for="topic-ai">
+              <span class="form-checkbox-box"></span>
+              <span>AIコンサルティング</span>
+            </label>
+          </div>
+          <div class="form-checkbox-item">
+            <input type="checkbox" id="topic-maintenance" name="topic" value="保守・運用">
+            <label class="form-checkbox-label" for="topic-maintenance">
+              <span class="form-checkbox-box"></span>
+              <span>保守・運用サポート</span>
+            </label>
+          </div>
+          <div class="form-checkbox-item">
+            <input type="checkbox" id="topic-other" name="topic" value="その他">
+            <label class="form-checkbox-label" for="topic-other">
+              <span class="form-checkbox-box"></span>
+              <span>その他・まずは相談</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">
+          ご予算の目安
+          <span class="form-label-optional">任意</span>
+        </label>
+        <div class="form-radio-group">
+          <div class="form-radio-item">
+            <input type="radio" id="budget-1" name="budget" value="〜30万円">
+            <label class="form-radio-label" for="budget-1">〜30万円</label>
+          </div>
+          <div class="form-radio-item">
+            <input type="radio" id="budget-2" name="budget" value="30〜50万円">
+            <label class="form-radio-label" for="budget-2">30〜50万円</label>
+          </div>
+          <div class="form-radio-item">
+            <input type="radio" id="budget-3" name="budget" value="50〜100万円">
+            <label class="form-radio-label" for="budget-3">50〜100万円</label>
+          </div>
+          <div class="form-radio-item">
+            <input type="radio" id="budget-4" name="budget" value="100万円以上">
+            <label class="form-radio-label" for="budget-4">100万円以上</label>
+          </div>
+          <div class="form-radio-item">
+            <input type="radio" id="budget-5" name="budget" value="未定" checked>
+            <label class="form-radio-label" for="budget-5">未定・相談したい</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="message">
+          ご相談内容・お悩み
+          <span class="form-label-required">必須</span>
+        </label>
+        <textarea id="message" name="message" class="form-textarea" required placeholder="現在のサイトの課題、目指している成果、納期のご希望など、お気軽にお書きください。"></textarea>
+      </div>
+
+      <div class="form-agreement">
+        <input type="checkbox" id="agreement" name="agreement" required>
+        <label for="agreement">
+          <a href="/privacy" target="_blank">プライバシーポリシー</a>に同意の上、送信します。
+        </label>
+      </div>
+
+      <button type="submit" class="form-submit" id="submitBtn">
+        相談内容を送信する ↗
+      </button>
+    </form>
+  </div>
+
+  <!-- 送信成功画面 -->
+  <div class="contact-success" id="successScreen">
+    <img src="/assets/morph_happy.png" alt="送信完了" class="contact-success-morph">
+    <h2 class="contact-success-title">送信完了しました！</h2>
+    <p class="contact-success-body">
+      お問い合わせありがとうございます。<br>
+      24時間以内にご担当者よりご返信いたします。<br><br>
+      しばらくお待ちください。
+    </p>
+    <a href="/" class="btn-outline">トップへ戻る ↗</a>
+  </div>
+</div>
+
+<footer class="global-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">
+          <img src="/assets/morphe_m_only.png" alt="MORPHE">
+        </div>
+        <span class="footer-company-text">MORPHE株式会社</span>
+      </div>
+      <p class="footer-tagline">
+        札幌発・AI×Webデザインカンパニー。<br>
+        AIとデザインの力で、企業の未来をデザインします。
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">SERVICE</div>
+      <ul>
+        <li><a href="/lp/web-design">Webサイト制作</a></li>
+        <li><a href="/lp/lp-design">LP制作</a></li>
+        <li><a href="/lp/ai-consulting">AIコンサル</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">COMPANY</div>
+      <ul>
+        <li><a href="/#about">私たちについて</a></li>
+        <li><a href="/works">制作実績</a></li>
+        <li><a href="/#plan">料金プラン</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">CONTACT</div>
+      <ul>
+        <li><a href="/contact">無料相談</a></li>
+        <li><a href="mailto:hello@morphe.jp">hello@morphe.jp</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 MORPHE Co., Ltd. All Rights Reserved.</span>
+    <ul class="footer-legal-links">
+      <li><a href="/privacy">プライバシーポリシー</a></li>
+      <li><a href="/tokushoho">特定商取引法に基づく表記</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/shared/global.js"></script>
+
+<script>
+/* ═══ フォーム送信処理 ═══ */
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = '送信中...';
+
+  /* チェックボックスは複数値を集約 */
+  const formData = new FormData(this);
+  const topics = formData.getAll('topic');
+  const data = {
+    name: formData.get('name'),
+    company: formData.get('company') || '',
+    email: formData.get('email'),
+    phone: formData.get('phone') || '',
+    topic: topics.join(', '),
+    budget: formData.get('budget') || '',
+    message: formData.get('message'),
+    submittedAt: new Date().toISOString()
+  };
+
+  /* バリデーション */
+  if (!data.name || !data.email || !data.message || topics.length === 0) {
+    alert('必須項目を入力してください。');
+    submitBtn.disabled = false;
+    submitBtn.textContent = '相談内容を送信する ↗';
+    return;
+  }
+
+  try {
+    /* Phase 1: Vercel API Routes へPOST（実装後はResend連携） */
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok || response.status === 404) {
+      /* 404はAPI未実装時の暫定対応：mailto fallback */
+      if (response.status === 404) {
+        const subject = encodeURIComponent('【MORPHE】無料相談のお問い合わせ');
+        const body = encodeURIComponent(
+`お名前: ${data.name}
+会社名: ${data.company}
+メール: ${data.email}
+電話: ${data.phone}
+ご相談内容: ${data.topic}
+ご予算: ${data.budget}
+
+【ご相談内容】
+${data.message}
+
+送信日時: ${data.submittedAt}`
+        );
+        window.location.href = `mailto:hello@morphe.jp?subject=${subject}&body=${body}`;
+      }
+
+      /* 成功画面に切替 */
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('successScreen').classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      throw new Error('送信に失敗しました');
+    }
+  } catch (err) {
+    alert('送信に失敗しました。お手数ですが、hello@morphe.jp まで直接ご連絡ください。');
+    submitBtn.disabled = false;
+    submitBtn.textContent = '相談内容を送信する ↗';
+  }
+});
+</script>
+
+</body>
+</html>

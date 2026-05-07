@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LP制作 | 準備中 | MORPHE株式会社</title>
+  <meta name="description" content="LP制作専用ページは現在準備中です。">
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" type="image/png" href="/assets/morphe_m_only.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/shared/global.css">
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, var(--white) 0%, #faf9fc 100%);
+      padding: 40px 20px;
+    }
+
+    .coming-soon {
+      max-width: 560px;
+      text-align: center;
+    }
+
+    .cs-morph {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 32px;
+      filter: drop-shadow(0 20px 40px rgba(180,150,220,0.4));
+      animation: csFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes csFloat {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+
+    .cs-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--purple-2);
+      margin-bottom: 16px;
+    }
+
+    .cs-title {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .cs-title .accent {
+      background: linear-gradient(135deg, var(--pink-1), var(--purple-1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .cs-body {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.95;
+      margin-bottom: 32px;
+    }
+
+    .cs-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="coming-soon">
+    <img src="/assets/morph_thinking.png" alt="準備中" class="cs-morph">
+    <div class="cs-tag">COMING SOON</div>
+    <h1 class="cs-title">
+      LP制作専用ページは<br>
+      <span class="accent">準備中です。</span>
+    </h1>
+    <p class="cs-body">
+      ただいま魂を込めて準備中です。<br>
+      LP制作のご相談は、お気軽にお問い合わせください。
+    </p>
+    <div class="cs-actions">
+      <a href="/contact" class="btn-primary">無料で相談する ↗</a>
+      <a href="/" class="btn-outline">トップへ戻る ↗</a>
+    </div>
+  </div>
+</body>
+</html>
