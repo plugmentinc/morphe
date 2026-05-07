@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>制作実績 | MORPHE株式会社</title>
+  <meta name="description" content="MORPHE株式会社のWeb制作・LP制作の実績ギャラリー。札幌の中小企業様の成果事例を紹介。">
+
+  <link rel="icon" type="image/png" href="/assets/morphe_m_only.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/shared/global.css">
+
+  <style>
+    .works-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    .works-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .works-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--purple-2);
+      margin-bottom: 14px;
+    }
+
+    .works-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .works-title .accent {
+      background: linear-gradient(135deg, var(--pink-1), var(--purple-1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .works-lead {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.95;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .work-card {
+      background: linear-gradient(135deg, #1a1a2a 0%, #0d0d0d 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      position: relative;
+      transition: transform 0.4s, box-shadow 0.4s;
+      cursor: pointer;
+    }
+
+    .work-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    }
+
+    .work-card-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .work-card:nth-child(1) .work-card-bg { background: radial-gradient(circle at 30% 30%, rgba(255,154,204,0.4), transparent 70%); }
+    .work-card:nth-child(2) .work-card-bg { background: radial-gradient(circle at 70% 30%, rgba(160,180,255,0.4), transparent 70%); }
+    .work-card:nth-child(3) .work-card-bg { background: radial-gradient(circle at 50% 50%, rgba(255,200,160,0.4), transparent 70%); }
+    .work-card:nth-child(4) .work-card-bg { background: radial-gradient(circle at 30% 70%, rgba(190,150,255,0.4), transparent 70%); }
+    .work-card:nth-child(5) .work-card-bg { background: radial-gradient(circle at 70% 70%, rgba(160,200,255,0.4), transparent 70%); }
+    .work-card:nth-child(6) .work-card-bg { background: radial-gradient(circle at 50% 30%, rgba(255,160,200,0.4), transparent 70%); }
+
+    .work-card-content {
+      position: relative;
+      z-index: 2;
+      padding: 28px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .work-card-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.7);
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      align-self: flex-start;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .work-card-title {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .work-card-stat {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--pink-2), var(--blue-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-top: 12px;
+    }
+
+    .work-card-stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .works-cta-block {
+      text-align: center;
+      padding: 56px;
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2a 100%);
+      border-radius: 24px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .works-cta-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,154,204,0.15), transparent 50%),
+                  radial-gradient(circle at 70% 70%, rgba(160,180,255,0.15), transparent 50%);
+      pointer-events: none;
+    }
+
+    .works-cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .works-cta-title {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .works-cta-body {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.95;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .works-page { padding: 56px 24px 80px; }
+      .works-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    }
+
+    @media (max-width: 600px) {
+      .works-grid { grid-template-columns: 1fr; }
+      .works-cta-block { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav class="global-nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon"><img src="/assets/morphe_m_only.png" alt="MORPHE"></div>
+    <div class="nav-logo-text">
+      <span class="logo-morphe">MORPHE</span>
+      <span class="logo-kaisha">株式会社</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#service">Service</a></li>
+    <li><a href="/works">Works</a></li>
+    <li><a href="/#plan">Plan</a></li>
+    <li><a href="/#flow">Flow</a></li>
+  </ul>
+  <a href="/contact" class="nav-cta">無料相談 ↗</a>
+</nav>
+
+<div class="works-page">
+  <div class="works-header">
+    <span class="works-tag">WORKS</span>
+    <h1 class="works-title">
+      成果を生む、<br>
+      <span class="accent">デザインを。</span>
+    </h1>
+    <p class="works-lead">
+      MORPHEがこれまでに手掛けた制作実績の一部をご紹介します。
+    </p>
+  </div>
+
+  <div class="works-grid">
+    <div class="work-card">
+      <div class="work-card-bg"></div>
+      <div class="work-card-content">
+        <span class="work-card-tag">CORPORATE</span>
+        <div>
+          <h3 class="work-card-title">SAPPORO<br>TECHNOLOGY</h3>
+          <div class="work-card-stat">3.2×</div>
+          <div class="work-card-stat-label">問い合わせ数 増加</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-bg"></div>
+      <div class="work-card-content">
+        <span class="work-card-tag">HOTEL</span>
+        <div>
+          <h3 class="work-card-title">ホテルの<br>その先へ。</h3>
+          <div class="work-card-stat">+240%</div>
+          <div class="work-card-stat-label">予約数</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-bg"></div>
+      <div class="work-card-content">
+        <span class="work-card-tag">TOURISM</span>
+        <div>
+          <h3 class="work-card-title">北海道の<br>未来をデザイン</h3>
+          <div class="work-card-stat">+410%</div>
+          <div class="work-card-stat-label">月間PV</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-bg"></div>
+      <div class="work-card-content">
+        <span class="work-card-tag">BRAND</span>
+        <div>
+          <h3 class="work-card-title">想いを、<br>カタチに。</h3>
+          <div class="work-card-stat">No.1</div>
+          <div class="work-card-stat-label">業界ブランド認知</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-bg"></div>
+      <div class="work-card-content">
+        <span class="work-card-tag">RETAIL</span>
+        <div>
+          <h3 class="work-card-title">繋がる<br>カフェ。</h3>
+          <div class="work-card-stat">+180%</div>
+          <div class="work-card-stat-label">来店数</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-card-bg"></div>
+      <div class="work-card-content">
+        <span class="work-card-tag">MEDICAL</span>
+        <div>
+          <h3 class="work-card-title">優しさの<br>カタチ。</h3>
+          <div class="work-card-stat">+320%</div>
+          <div class="work-card-stat-label">予約問い合わせ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="works-cta-block">
+    <div class="works-cta-content">
+      <h2 class="works-cta-title">あなたの実績も、<br>ここに加えませんか？</h2>
+      <p class="works-cta-body">
+        MORPHEと一緒に、ビジネスの未来をデザインしましょう。<br>
+        まずはお気軽にご相談ください。
+      </p>
+      <a href="/contact" class="contact-cta-button" style="display:inline-flex; align-items:center; gap:8px; background: linear-gradient(135deg, var(--pink-2), var(--blue-2)); color: var(--black); padding: 18px 36px; border-radius: 50px; font-size: 15px; font-weight: 700; text-decoration: none;">無料で相談してみる ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer class="global-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">
+          <img src="/assets/morphe_m_only.png" alt="MORPHE">
+        </div>
+        <span class="footer-company-text">MORPHE株式会社</span>
+      </div>
+      <p class="footer-tagline">
+        札幌発・AI×Webデザインカンパニー。<br>
+        AIとデザインの力で、企業の未来をデザインします。
+      </p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">SERVICE</div>
+      <ul>
+        <li><a href="/lp/web-design">Webサイト制作</a></li>
+        <li><a href="/lp/lp-design">LP制作</a></li>
+        <li><a href="/lp/ai-consulting">AIコンサル</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">COMPANY</div>
+      <ul>
+        <li><a href="/#about">私たちについて</a></li>
+        <li><a href="/works">制作実績</a></li>
+        <li><a href="/#plan">料金プラン</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">CONTACT</div>
+      <ul>
+        <li><a href="/contact">無料相談</a></li>
+        <li><a href="mailto:hello@morphe.jp">hello@morphe.jp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 MORPHE Co., Ltd. All Rights Reserved.</span>
+    <ul class="footer-legal-links">
+      <li><a href="/privacy">プライバシーポリシー</a></li>
+      <li><a href="/tokushoho">特定商取引法に基づく表記</a></li>
+    </ul>
+  </div>
+</footer>
+
+<a href="/contact" class="floating-cta">
+  <span class="floating-cta-pulse"></span>
+  <span>無料相談する</span>
+</a>
+
+<div id="morph-evolution" title="スクロールで進化するモーフ">
+  <div class="morph-evo-ring"></div>
+  <div class="morph-evo-stage-label" id="morphStageLabel">STAGE 0</div>
+  <div class="morph-evo-bubble" id="morphBubble">こんにちは！</div>
+  <div class="morph-evo-img">
+    <img id="morphEvoImg" data-assets-base="/assets" src="/assets/morph_egg.png" alt="進化するモーフ">
+  </div>
+</div>
+
+<script src="/shared/global.js"></script>
+
+</body>
+</html>
