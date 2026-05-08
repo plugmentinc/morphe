@@ -47,26 +47,30 @@ img { max-width: 100%; display: block; }
    共通ナビゲーション
    ═══════════════════════════════════════════ */
 .global-nav {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 100;
+  height: 64px;
   background: rgba(250,250,250,0.85);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
-  padding: 0 40px;
-  height: 68px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 32px;
+  padding: 0 40px;
+  gap: 40px;
 }
+
+/* navが固定なのでbody先頭にpaddingを確保 */
+body { padding-top: 64px; }
 
 .nav-logo {
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  color: var(--black);
+  flex-shrink: 0;
 }
 
 .nav-logo-icon {
@@ -110,18 +114,22 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   gap: 32px;
+  flex: 1;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--black);
+  letter-spacing: 0.01em;
   transition: opacity 0.2s;
   position: relative;
 }
 
-.nav-links a:hover { opacity: 0.6; }
+.nav-links a:hover { opacity: 0.5; }
 
 .nav-links a.active::after {
   content: '';
@@ -135,7 +143,7 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-cta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 6px;
   background: var(--black);
@@ -511,7 +519,7 @@ img { max-width: 100%; display: block; }
    レスポンシブ
    ═══════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .global-nav { padding: 0 20px; gap: 16px; height: 60px; }
+  .global-nav { padding: 0 20px; gap: 16px; height: 64px; }
   .nav-links { display: none; }
   .nav-cta { padding: 8px 14px; font-size: 12px; }
 

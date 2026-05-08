@@ -35,45 +35,68 @@
       overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    /* ══ NAV ══ */
+    img { max-width: 100%; display: block; }    /* ══ NAV（トップと統一）══ */
     nav {
-      position: sticky; top: 0; z-index: 100;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
       background: rgba(250,250,250,0.85);
       backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      padding: 0 40px; height: 68px;
-      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+      display: flex; align-items: center;
+      padding: 0 40px; gap: 40px;
     }
-    .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--black); flex-shrink: 0;
+    }
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
     .nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
-    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-text {
+      font-family: 'Inter', sans-serif; font-size: 12px;
+      font-weight: 800; letter-spacing: 0.15em; line-height: 1.2;
+      color: var(--black);
+    }
     .logo-morphe {
-      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800;
+      display: block; font-size: 14px; font-weight: 800;
       letter-spacing: 0.18em; color: var(--black);
     }
     .logo-kaisha {
-      font-size: 9px; font-weight: 500; color: var(--gray);
-      letter-spacing: 0.1em; margin-top: 2px;
+      display: block; font-size: 9px; font-weight: 500;
+      color: var(--gray); letter-spacing: 0.1em; margin-top: 2px;
     }
     .nav-links {
-      display: flex; align-items: center; gap: 32px; list-style: none;
+      display: flex; align-items: center; gap: 32px;
+      flex: 1; list-style: none;
+      margin: 0; padding: 0;
     }
     .nav-links a {
-      font-size: 13px; font-weight: 500; color: var(--black);
+      font-size: 13px; font-weight: 400; color: var(--black);
+      text-decoration: none; letter-spacing: 0.01em;
       transition: opacity 0.2s;
     }
-    .nav-links a:hover { opacity: 0.6; }
+    .nav-links a:hover { opacity: 0.5; }
     .nav-cta {
-      display: inline-flex; align-items: center; gap: 6px;
+      display: flex; align-items: center; gap: 6px;
       background: var(--black); color: var(--white);
-      padding: 10px 20px; border-radius: 50px;
-      font-size: 13px; font-weight: 600;
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: none; border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none; flex-shrink: 0;
     }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* navが固定なのでbody先頭にpadding */
+    body { padding-top: 64px; }
 
     /* ══ HERO ══ */
     .about-hero {
@@ -434,11 +457,11 @@
   <ul class="nav-links">
     <li><a href="/about">About</a></li>
     <li><a href="/works">Works</a></li>
-    <li><a href="/#pricing">Plan</a></li>
     <li><a href="/#service">Service</a></li>
+    <li><a href="/#pricing">Plan</a></li>
     <li><a href="/#faq">FAQ</a></li>
   </ul>
-  <a href="/contact" class="nav-cta">無料相談 ↗</a>
+  <a href="/contact" class="nav-cta">無料相談する ↗</a>
 </nav>
 
 <section class="about-hero">
@@ -638,15 +661,15 @@
     { threshold: 0.97, src: '/assets/morph_welcome.png',   label: 'STAGE 9', bubble: 'ようこそ！' }
   ];
 
-  let currentStageIndex = 0;
+  let currentStageIndex = -1;  /* -1で初期化することで初回必ず描画 */
   let bubbleTimeoutId = null;
+  let morphStartScrollY = null;
+  let isMorphVisible = false;
 
   function updateMorphStage(progress) {
     let newStageIndex = 0;
     for (let i = morphStages.length - 1; i >= 0; i--) {
-      if (progress >= morphStages[i].threshold) {
-        newStageIndex = i; break;
-      }
+      if (progress >= morphStages[i].threshold) { newStageIndex = i; break; }
     }
     if (newStageIndex !== currentStageIndex) {
       currentStageIndex = newStageIndex;
@@ -672,12 +695,30 @@
     requestAnimationFrame(() => {
       const scrollY = window.scrollY;
       const totalHeight = document.body.scrollHeight - window.innerHeight;
-      const progress = scrollY / Math.max(totalHeight, 1);
-      if (bar) bar.style.width = (progress * 100) + '%';
-      const showMorph = scrollY > 300;
-      morphEvo.classList.toggle('visible', showMorph);
-      if (floatingCTA) floatingCTA.classList.toggle('visible', showMorph);
-      if (showMorph) updateMorphStage(progress);
+      if (bar) bar.style.width = ((scrollY / Math.max(totalHeight, 1)) * 100) + '%';
+
+      const shouldShow = scrollY > 200;
+
+      if (shouldShow && !isMorphVisible) {
+        morphStartScrollY = scrollY;
+        isMorphVisible = true;
+        morphEvo.classList.add('visible');
+        if (floatingCTA) floatingCTA.classList.add('visible');
+        currentStageIndex = -1;
+        updateMorphStage(0);
+      } else if (!shouldShow && isMorphVisible) {
+        isMorphVisible = false;
+        morphEvo.classList.remove('visible');
+        if (floatingCTA) floatingCTA.classList.remove('visible');
+      } else if (isMorphVisible && morphStartScrollY !== null) {
+        const remainingScroll = totalHeight - morphStartScrollY;
+        const scrolledFromStart = scrollY - morphStartScrollY;
+        const progress = remainingScroll > 0
+          ? Math.max(0, Math.min(1, scrolledFromStart / remainingScroll))
+          : 0;
+        updateMorphStage(progress);
+      }
+
       ticking = false;
     });
     ticking = true;

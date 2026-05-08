@@ -4460,8 +4460,10 @@ document.addEventListener('DOMContentLoaded', () => {
     { threshold: 0.97, src: '/assets/morph_welcome.png',   label: 'STAGE 9', bubble: 'ようこそ！' }
   ];
 
-  let currentStageIndex = 0;
+  let currentStageIndex = -1;  /* -1で初期化することで初回必ず描画されるように */
   let bubbleTimeoutId = null;
+  let morphStartScrollY = null;  /* モーフが最初に表示された時のscrollY */
+  let isMorphVisible = false;
 
   function getStageForProgress(progress) {
     let stageIndex = 0;
@@ -4506,16 +4508,32 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(() => {
       const scrollY = window.scrollY;
       const totalHeight = document.body.scrollHeight - window.innerHeight;
-      const progress = scrollY / Math.max(totalHeight, 1);
 
-      /* HEROを過ぎたら表示（300px以上スクロール） */
-      const showMorph = scrollY > 300;
-      morphEvo.classList.toggle('visible', showMorph);
-      if (floatingCTA) {
-        floatingCTA.classList.toggle('visible', showMorph);
-      }
+      /* HEROを過ぎたら表示（200px以上スクロール）*/
+      const shouldShow = scrollY > 200;
 
-      if (showMorph) {
+      if (shouldShow && !isMorphVisible) {
+        /* 初めて表示するタイミングを記録 */
+        morphStartScrollY = scrollY;
+        isMorphVisible = true;
+        morphEvo.classList.add('visible');
+        if (floatingCTA) floatingCTA.classList.add('visible');
+
+        /* 卵から開始：強制的にステージ0を表示 */
+        currentStageIndex = -1;  /* リセット */
+        updateMorphStage(0);  /* progress=0で確実に卵を表示 */
+      } else if (!shouldShow && isMorphVisible) {
+        /* 上に戻ったら隠す */
+        isMorphVisible = false;
+        morphEvo.classList.remove('visible');
+        if (floatingCTA) floatingCTA.classList.remove('visible');
+      } else if (isMorphVisible && morphStartScrollY !== null) {
+        /* 表示後：表示開始位置からの相対進捗で計算 */
+        const remainingScroll = totalHeight - morphStartScrollY;
+        const scrolledFromStart = scrollY - morphStartScrollY;
+        const progress = remainingScroll > 0
+          ? Math.max(0, Math.min(1, scrolledFromStart / remainingScroll))
+          : 0;
         updateMorphStage(progress);
       }
 

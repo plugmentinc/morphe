@@ -69,22 +69,19 @@
     /* assetsへのパスを自動判定（コーポレートTOP=/assets, LP=/assets） */
     const assetsBase = morphEvoImg.dataset.assetsBase || '/assets';
 
-    let currentStageIndex = 0;
+    let currentStageIndex = -1;  /* -1で初期化することで初回必ず描画 */
     let bubbleTimeoutId = null;
+    let morphStartScrollY = null;
+    let isMorphVisible = false;
 
-    function getStageForProgress(progress) {
-      let stageIndex = 0;
+    function updateMorphStage(progress) {
+      let newStageIndex = 0;
       for (let i = morphStages.length - 1; i >= 0; i--) {
         if (progress >= morphStages[i].threshold) {
-          stageIndex = i;
+          newStageIndex = i;
           break;
         }
       }
-      return stageIndex;
-    }
-
-    function updateMorphStage(progress) {
-      const newStageIndex = getStageForProgress(progress);
       if (newStageIndex !== currentStageIndex) {
         currentStageIndex = newStageIndex;
         const stage = morphStages[newStageIndex];
@@ -115,27 +112,28 @@
       requestAnimationFrame(() => {
         const scrollY = window.scrollY;
         const totalHeight = document.body.scrollHeight - window.innerHeight;
+        const shouldShow = scrollY > 200;
 
-        /* セレクションHEROがある場合はそこを過ぎたら表示 */
-        const selectionHero = document.querySelector('.selection-hero');
-        const heroOffset = selectionHero ? selectionHero.offsetHeight : 0;
-
-        const showMorph = selectionHero
-          ? scrollY > heroOffset - 200
-          : scrollY > 200;
-
-        morphEvo.classList.toggle('visible', showMorph);
-
-        if (showMorph) {
-          if (selectionHero) {
-            const adjustedScroll = scrollY - heroOffset;
-            const adjustedTotal = totalHeight - heroOffset;
-            const adjustedProgress = adjustedScroll / Math.max(adjustedTotal, 1);
-            updateMorphStage(adjustedProgress);
-          } else {
-            const progress = scrollY / Math.max(totalHeight, 1);
-            updateMorphStage(progress);
-          }
+        if (shouldShow && !isMorphVisible) {
+          /* 初めて表示するタイミングを記録 */
+          morphStartScrollY = scrollY;
+          isMorphVisible = true;
+          morphEvo.classList.add('visible');
+          /* 卵から開始：強制的にステージ0を表示 */
+          currentStageIndex = -1;
+          updateMorphStage(0);
+        } else if (!shouldShow && isMorphVisible) {
+          /* 上に戻ったら隠す */
+          isMorphVisible = false;
+          morphEvo.classList.remove('visible');
+        } else if (isMorphVisible && morphStartScrollY !== null) {
+          /* 表示後：表示開始位置からの相対進捗で計算 */
+          const remainingScroll = totalHeight - morphStartScrollY;
+          const scrolledFromStart = scrollY - morphStartScrollY;
+          const progress = remainingScroll > 0
+            ? Math.max(0, Math.min(1, scrolledFromStart / remainingScroll))
+            : 0;
+          updateMorphStage(progress);
         }
 
         ticking = false;
@@ -163,8 +161,8 @@
 
     let ticking = false;
     function update() {
-      /* スクロール400px超えたら表示 */
-      const visible = window.scrollY > 400;
+      /* スクロール200px超えたら表示（モーフと同期） */
+      const visible = window.scrollY > 200;
       cta.classList.toggle('visible', visible);
       ticking = false;
     }

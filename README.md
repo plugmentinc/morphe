@@ -1,172 +1,179 @@
-# MORPHE - 公式サイト
+# MORPHE 公式サイト
 
-> 札幌発・AI × Webデザインカンパニー「MORPHE株式会社」の公式サイト
-> コーポレート + サービス別LP分離構造
+> 札幌発・AI×Webデザインカンパニー「MORPHE株式会社」の公式サイト
 
 🌐 **本番環境**: https://morphe-phi.vercel.app/
 
+[![Status](https://img.shields.io/badge/status-Production-success)]()
+[![Deploy](https://img.shields.io/badge/deploy-Vercel-black)]()
+[![License](https://img.shields.io/badge/license-Proprietary-lightgrey)]()
+
 ---
 
-## 📁 プロジェクト構成
+## 🎯 プロジェクト概要
+
+このサイトは「コーポレート（信頼）+ サービス別LP（売る）」の分離構造を採用。
+
+```
+morphe-phi.vercel.app/
+├ /                    ← トップ（メインLP）
+├ /about               ← 会社情報
+├ /works               ← 制作実績  
+├ /contact             ← 問い合わせフォーム
+└ /lp/                 ← サービス別LP
+    ├ /web-design      ← Web制作（メインLPと同一）
+    ├ /lp-design       ← LP制作（準備中）
+    └ /ai-consulting   ← AIコンサル（準備中）
+```
+
+---
+
+## 🚀 開発フロー
+
+### GitHub × Vercel 自動デプロイ
+
+```bash
+git add .
+git commit -m "feat: 〇〇を更新"
+git push origin main
+# → Vercelが自動的にデプロイ（1〜3分）
+```
+
+### Claude Code との作業
+
+```bash
+# プロジェクトディレクトリで起動
+claude
+
+# Claude が自動的に CLAUDE.md を読み込み、
+# プロジェクト全体像を把握した状態で作業開始
+```
+
+---
+
+## 📁 ファイル構成
 
 ```
 morphe-phi/
-├── index.html                    # コーポレートTOP（ミニマル・洗練）
-├── about/
-│   └── (準備中)
-├── works/
-│   └── index.html                # 制作実績ギャラリー
-├── contact/
-│   └── index.html                # 問い合わせフォーム
-├── privacy/
-│   └── index.html                # プライバシーポリシー
-├── tokushoho/
-│   └── index.html                # 特定商取引法に基づく表記
-├── lp/
-│   ├── web-design/
-│   │   └── index.html            # ★ The Living LP - Web制作
-│   ├── lp-design/
-│   │   └── index.html            # LP制作（準備中）
-│   └── ai-consulting/
-│       └── index.html            # AIコンサル（準備中）
-├── api/
-│   └── contact.js                # Vercel API Route（問い合わせ送信）
-├── shared/
-│   ├── global.css                # 全ページ共通CSS（design tokens）
-│   └── global.js                 # 全ページ共通JS（進化モーフ等）
-├── assets/                       # 画像アセット
-│   ├── morph_*.png               # モーフキャラ12種
-│   └── morphe_logo_*.png         # ロゴ3種
-└── vercel.json                   # Vercel設定
+├── CLAUDE.md                ← Claude Code 自動読込（最重要）
+├── README.md                ← このファイル
+├── index.html               ← トップ（メインLP）
+├── vercel.json              ← Vercel設定
+├── about/index.html         ← 会社情報
+├── works/index.html         ← 制作実績
+├── contact/index.html       ← 問い合わせ
+├── privacy/index.html       ← プライバシーポリシー
+├── tokushoho/index.html     ← 特商法表記
+├── lp/                      ← サービス別LP
+├── api/contact.js           ← API Routes
+├── shared/                  ← 共通CSS・JS
+├── assets/                  ← 画像（モーフ12種+ロゴ4種）
+├── handoff_docs/            ← 詳細引き継ぎドキュメント
+└── .claude-code/            ← Claude Code 専用設定
 ```
 
 ---
 
-## 🚀 GitHub × Vercel 運用フロー
+## 📚 ドキュメント
 
-### 通常の更新フロー
+### 引き継ぎ・継続開発時の参照順序
 
-```bash
-# 1. ローカルで変更を加える
-# 2. 変更を確認
-git status
-git diff
-
-# 3. ステージング・コミット
-git add .
-git commit -m "feat: 〇〇を追加"
-
-# 4. GitHubへプッシュ → Vercelが自動デプロイ
-git push origin main
-```
-
-### Vercelダッシュボードで確認
-
-1. https://vercel.com/dashboard にアクセス
-2. `morphe-phi` プロジェクトを開く
-3. Deployments タブで最新デプロイの状況を確認
-4. **数分以内**に本番環境へ反映される
+1. **[CLAUDE.md](./CLAUDE.md)** - Claude Code 向けメイン文書（必読）
+2. **[handoff_docs/PROJECT_HISTORY.md](./handoff_docs/PROJECT_HISTORY.md)** - プロジェクト経緯
+3. **[handoff_docs/DESIGN_SYSTEM.md](./handoff_docs/DESIGN_SYSTEM.md)** - デザイン仕様
+4. **[handoff_docs/PRICING_PLANS.md](./handoff_docs/PRICING_PLANS.md)** - 料金プラン詳細
+5. **[handoff_docs/PAGE_SPECS.md](./handoff_docs/PAGE_SPECS.md)** - ページ仕様
+6. **[handoff_docs/TROUBLESHOOTING.md](./handoff_docs/TROUBLESHOOTING.md)** - 問題解決
+7. **[handoff_docs/TODO.md](./handoff_docs/TODO.md)** - 残タスク
 
 ---
 
-## 🎨 重要なデザイン原則
+## 🎨 主な特徴
 
-### 必ず守ること
+### 革新的なブランド体験
+- 🎭 **進化するモーフ** - スクロールで10ステージ進化（右下常駐）
+- 💬 **フローティング相談ボタン** - スクロールで出現（左下）
+- 🌈 **AIアニメーション** - HEROで虹色アニメーション
+- 📊 **タブ切り替え料金プラン** - 買い切り/サブスク選択可能
 
-- ✅ ブランドカラー（黒 + 白 + 虹色）厳守
-- ✅ モーフキャラクターを大切に扱う
-- ✅ コーポレート = ミニマル / LP = 革新的 の差別化
-- ✅ 進化するモーフは全ページで常駐
+### 技術スタック
+- **HTML5** + **CSS3** + **Vanilla JavaScript**
+- **フレームワークなし**（軽量・高速）
+- **Vercel** ホスティング（自動デプロイ）
+
+---
+
+## 💰 料金プラン
+
+### 買い切り型
+| プラン | 価格 | 内容 |
+|---|---|---|
+| STARTER | ¥248,000〜 | 5ページ、1ヶ月サポート |
+| **STANDARD** ⭐ | ¥498,000〜 | 10ページ、AI設計、3ヶ月サポート |
+| PREMIUM | ¥980,000〜 | 無制限、コンサル、6ヶ月サポート |
+
+### サブスク型
+| プラン | 初期 | 月額 |
+|---|---|---|
+| LITE | ¥49,800 | ¥19,800/月 |
+| **STANDARD** ⭐ | ¥98,000 | ¥29,800/月 |
+| PRO | ¥198,000 | ¥49,800/月 |
+
+詳細：[handoff_docs/PRICING_PLANS.md](./handoff_docs/PRICING_PLANS.md)
+
+---
+
+## 🚨 重要なルール
 
 ### やってはいけないこと
+- ❌ モーフキャラクターの削除
+- ❌ 進化モーフの削除
+- ❌ Selection HEROの復活
+- ❌ 外部ライブラリの追加
+- ❌ ナビゲーション順序の変更
 
-- ❌ Selection HEROやLiving要素を勝手に削除
-- ❌ ファイルを分割してフレームワーク化
-- ❌ assets/フォルダの画像を再処理
-- ❌ 不要な外部ライブラリの追加
-
----
-
-## 📧 問い合わせフォームの段階的拡張
-
-### Phase 1（現在）: ログ確認 + mailto fallback
-
-問い合わせはVercelのログに記録され、APIが利用できない場合はメールクライアントが起動する仕組みです。
-
-**確認方法**：
-1. Vercelダッシュボード → Functions タブ
-2. `/api/contact` を選択 → Logs を確認
-
-### Phase 2（推奨アップグレード）: Resend連携
-
-実メール送信を有効化するには、以下の環境変数を Vercel に設定：
-
-1. Vercelダッシュボード → Settings → Environment Variables
-2. 以下を追加：
-   - **Key**: `RESEND_API_KEY`
-   - **Value**: Resendから取得したAPIキー
-3. 再デプロイで自動反映
-
-Resendの設定：
-- https://resend.com/ で無料アカウント作成（3000通/月まで無料）
-- ドメイン認証（morphe.jp）を行う
-- APIキーを発行
+### 必ず守ること
+- ✅ ブランドカラー（黒+白+虹色）
+- ✅ 進化モーフ全ページ常駐
+- ✅ ナビ順序: About → Works → Service → Plan → FAQ
+- ✅ コーポレート/LP分離構造
 
 ---
 
-## 🛠 技術スタック
+## 📧 問い合わせフォーム
 
-- **HTML5** + **CSS3** + **Vanilla JavaScript**
-- **フレームワーク**: なし（意図的に軽量化）
-- **ホスティング**: Vercel（GitHub連携で自動デプロイ）
-- **将来**: Next.js 移行可能なフォルダ構造
+### 現状（Phase 1）
+- フォーム送信 → Vercelログに記録
+- API失敗時 → mailto fallback
 
----
-
-## 📚 詳細ドキュメント
-
-引き継ぎ・継続開発向けの詳細資料は以下：
-
-- [HANDOFF.md](./handoff_docs/HANDOFF.md) - 引き継ぎ用メイン文書
-- [PROJECT_OVERVIEW.md](./handoff_docs/PROJECT_OVERVIEW.md) - プロジェクト全体像
-- [CURRENT_STATE.md](./handoff_docs/CURRENT_STATE.md) - 実装状態の詳細
-- [TODO.md](./handoff_docs/TODO.md) - 残タスクと将来計画
-- [DESIGN_SYSTEM.md](./handoff_docs/DESIGN_SYSTEM.md) - デザイン仕様
-- [ASSETS.md](./handoff_docs/ASSETS.md) - 画像アセット仕様
+### Phase 2 移行
+1. Resendアカウント作成（無料3,000通/月）
+2. ドメイン認証
+3. APIキー発行
+4. Vercel環境変数 `RESEND_API_KEY` 設定
+5. **コード変更不要**で自動有効化
 
 ---
 
-## 🔄 サイト構造の意図
+## 🛠 開発環境
 
-### コーポレート（`/`）の役割
-- **信頼の場所**：「ちゃんとしてる感」を演出
-- 検索流入・名刺・営業先での確認に使われる
-- ミニマル・洗練デザイン
+### 推奨ローカル環境
+- Windows + GitHub Desktop
+- VSCode または同等エディタ
+- Chrome DevTools
 
-### LP（`/lp/*`）の役割
-- **売る場所**：CV最大化を狙う
-- 広告流入・SNS流入で使われる
-- The Living LP革新的構造（Selection HERO・Day Storytelling・進化モーフ等）
-
-### 相互導線
-- LP → コーポレート: ナビとフッターから「会社情報」へ誘導
-- コーポレート → LP: SERVICEカードから各専用LPへ誘導
+### ローカル動作確認
+```bash
+# シンプルなHTTPサーバー
+python3 -m http.server 8000
+# → http://localhost:8000/
+```
 
 ---
 
-## ⏱ 段階的リリース計画
+## 👤 プロジェクトオーナー
 
-| Phase | 期間 | 内容 | 状態 |
-|---|---|---|---|
-| **Phase 1** | 完了 | コーポレートTOP + Web制作LP移植 | ✅ |
-| **Phase 2** | 1〜2週間 | LP制作LP・AIコンサルLP本実装 | ⏸ |
-| **Phase 3** | 任意 | Resend連携・CRM・採用ページ・多言語化 | 🔮 |
-
----
-
-## 👤 オーナー
-
-**Ryuki さん** - MORPHE株式会社
+**Ryuki さん** - MORPHE株式会社（札幌）
 
 ---
 
@@ -174,9 +181,13 @@ Resendの設定：
 
 | 日付 | 内容 |
 |---|---|
-| 2026-05-06 | パターンB ハイブリッド構造へ移行・コーポレート分離・問い合わせフォーム実装 |
-| 2026-05-01 | The Living LP - Selection Edition v1.0 完成 |
+| 2026-05-07 | 進化モーフバグ修正・ナビ統一・Claude Code引き継ぎパッケージ整備 |
+| 2026-05-07 | 料金プラン確定・about/worksデザイン統一 |
+| 2026-05-06 | コーポレート/LP分離構造実装 |
+| 2026-05-01 | The Living LP v1.0 完成 |
 
 ---
 
-**何か困ったら、handoff_docs/ 内のドキュメントをご確認ください。**
+## 📜 ライセンス
+
+Proprietary - All rights reserved by MORPHE Co., Ltd.
