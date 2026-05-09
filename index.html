@@ -3992,7 +3992,17 @@
     }
     .blob-bg { width: 360px; height: 340px; }
     .hero-center-logo { width: 260px; }
-    .morph-hero { width: 140px; bottom: 30px; left: 10px; }
+    .morph-hero {
+      width: 140px;
+      bottom: 30px;
+      left: 10px;
+      filter: drop-shadow(0 10px 15px rgba(180,150,220,0.15));
+      animation: morphHeroFloatMobile 5s ease-in-out infinite;
+    }
+    @keyframes morphHeroFloatMobile {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50%      { transform: translateY(-6px) rotate(2deg); }
+    }
     .devices { right: -30px; bottom: 20px; transform: scale(0.75); transform-origin: bottom right; }
 
     /* 縦書きラベルを非表示 */
