@@ -4093,11 +4093,17 @@
   @media (max-width: 600px) {
     /* HERO */
     .hero-inner { padding: 24px 20px; }
-    .hero-right { height: 440px; }
-    .blob-bg { width: 290px; height: 280px; }
+    .hero-right { height: auto; overflow: visible; }
+    .blob-bg { width: 240px; height: 220px; left: -20px; top: -30px; }
+    .hero-aura { width: 220px; height: 220px; }
     .hero-center-logo { width: 200px; }
-    .morph-hero { width: 110px; bottom: 20px; left: 6px; }
-    .devices { transform: scale(0.58); right: -40px; bottom: 0; }
+    .morph-hero {
+      width: 110px;
+      bottom: 20px;
+      left: 6px;
+      filter: drop-shadow(0 8px 12px rgba(180,150,220,0.1));
+    }
+    .devices { transform: scale(0.55); right: -20px; bottom: 10px; }
     .hero-body { font-size: 13px; }
     .badge { font-size: 10px; }
 
