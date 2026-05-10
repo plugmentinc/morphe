@@ -1059,11 +1059,11 @@
       </p>
 
       <div class="hero-actions">
-        <a class="btn-primary" href="#contact">
+        <a class="btn-primary" href="/contact">
           無料で相談してみる ↗
         </a>
-        <a class="btn-secondary" href="#">
-          サービス資料をダウンロード ↓
+        <a class="btn-secondary" href="#diagnosis">
+          AI診断を試す（30秒）
         </a>
       </div>
     </div>
@@ -1242,23 +1242,18 @@
   <div class="trust-inner">
     <div class="trust-stats">
       <div class="trust-stat">
-        <span class="trust-num" data-target="120" data-suffix="+">0<span class="trust-unit">+</span></span>
-        <span class="trust-label">制作実績</span>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-stat">
-        <span class="trust-num" data-target="98" data-suffix="%">0<span class="trust-unit">%</span></span>
-        <span class="trust-label">顧客満足度</span>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-stat">
         <span class="trust-num" data-target="7" data-suffix="日">0<span class="trust-unit">日</span></span>
-        <span class="trust-label">最短公開日数</span>
+        <span class="trust-label">最短制作日数</span>
       </div>
       <div class="trust-divider"></div>
       <div class="trust-stat">
-        <span class="trust-num" data-target="3" data-suffix="年">0<span class="trust-unit">年</span></span>
-        <span class="trust-label">平均継続年数</span>
+        <span class="trust-num" data-target="30" data-suffix="+">0<span class="trust-unit">+</span></span>
+        <span class="trust-label">AI工程サポート</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-stat">
+        <span class="trust-num" data-target="1" data-suffix="">0<span class="trust-unit"></span></span>
+        <span class="trust-label">先着3社<br>30%OFF</span>
       </div>
     </div>
     <div class="morph-trust">
@@ -1916,7 +1911,428 @@
 </section>
 
 <!-- ══════════════════════════════════════════
-     ⑤ WORKS - 実績（Before/After的な成果数値付き）
+     ⑤ AI診断（CV①）
+═══════════════════════════════════════════ -->
+<style>
+  .diag-section {
+    background: linear-gradient(180deg, #0d0d0d 0%, #1a1a2a 100%);
+    padding: 120px 40px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diag-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,140,180,0.1), transparent 40%),
+                      radial-gradient(circle at 80% 70%, rgba(160,180,255,0.1), transparent 40%);
+    pointer-events: none;
+  }
+
+  .diag-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .diag-header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .diag-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: transparent;
+    background: linear-gradient(90deg, #ff9acc, #a0b0ff, #c9a0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 16px;
+  }
+
+  .diag-title {
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .diag-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.9;
+  }
+
+  .morph-diag {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 110px;
+    animation: charFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 15px 25px rgba(180,150,220,0.4));
+  }
+
+  .morph-diag img { width: 100%; display: block; }
+
+  .diag-card {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diag-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,140,180,0.5), rgba(160,180,255,0.5), transparent);
+  }
+
+  .diag-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .diag-progress-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .diag-progress-fill {
+    height: 100%;
+    width: 20%;
+    background: linear-gradient(90deg, #ff9acc, #a0b0ff, #c9a0ff);
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .diag-step-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+  }
+
+  .diag-steps {
+    position: relative;
+    min-height: 280px;
+  }
+
+  .diag-step {
+    display: none;
+    animation: stepIn 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .diag-step.active {
+    display: block;
+  }
+
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .diag-q {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .diag-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .diag-opt {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+  }
+
+  .diag-opt:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateX(4px);
+  }
+
+  .diag-opt.selected {
+    background: linear-gradient(135deg, rgba(255,140,180,0.2), rgba(160,180,255,0.2));
+    border-color: rgba(255,140,180,0.5);
+  }
+
+  .diag-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+  }
+
+  .diag-back, .diag-next {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .diag-back:disabled, .diag-next:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .diag-back:not(:disabled):hover, .diag-next:not(:disabled):hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  .diag-next:not(:disabled) {
+    background: linear-gradient(135deg, #ff9acc, #a0b0ff);
+    border-color: transparent;
+    color: #0d0d0d;
+    font-weight: 700;
+  }
+
+  .diag-next:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255,140,180,0.3);
+  }
+
+  /* 診断結果 */
+  .diag-result {
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  .result-morph-wrap {
+    width: 180px;
+    margin: 0 auto 20px;
+    animation: bounceIn 0.6s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .result-morph-wrap img { width: 100%; display: block; }
+
+  @keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .result-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: #ff9acc;
+    margin-bottom: 12px;
+  }
+
+  .result-text {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .result-text strong {
+    background: linear-gradient(90deg, #ff9acc, #a0b0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
+  }
+
+  .result-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 28px;
+  }
+
+  .result-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .result-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .result-cta-primary {
+    background: linear-gradient(135deg, #ff9acc, #a0b0ff);
+    color: #0d0d0d;
+  }
+
+  .result-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 154, 204, 0.3);
+  }
+
+  .result-cta-secondary {
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+
+  .result-cta-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .diag-restart {
+    display: inline-block;
+    margin-top: 16px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    padding: 8px;
+    transition: color 0.2s;
+  }
+
+  .diag-restart:hover { color: white; }
+</style>
+
+<section class="diag-section" id="diagnosis">
+  <div class="diag-inner">
+    <div class="diag-header">
+      <span class="diag-tag">AI × DIAGNOSIS</span>
+      <h2 class="diag-title">あなたのWebサイトに<br>何が必要か、AIが診断します。</h2>
+      <p class="diag-sub">4つの質問に答えるだけ。最適なプランを提案します。</p>
+
+      <div class="morph-diag">
+        <img src="/assets/morph_thinking.png" alt="Morph thinking" loading="lazy">
+      </div>
+    </div>
+
+    <div class="diag-card" id="diagCard">
+      <div class="diag-progress-wrap">
+        <div class="diag-progress-bar">
+          <div class="diag-progress-fill" id="progressFill"></div>
+        </div>
+        <span class="diag-step-label" id="stepLabel">1 / 4</span>
+      </div>
+
+      <div class="diag-steps" id="diagSteps">
+        <div class="diag-step active" data-step="1">
+          <p class="diag-q">ビジネスの業種を教えてください。</p>
+          <div class="diag-options">
+            <button class="diag-opt" onclick="selectOpt(this)">飲食・カフェ</button>
+            <button class="diag-opt" onclick="selectOpt(this)">医療・クリニック</button>
+            <button class="diag-opt" onclick="selectOpt(this)">建設・不動産</button>
+            <button class="diag-opt" onclick="selectOpt(this)">IT・テック</button>
+            <button class="diag-opt" onclick="selectOpt(this)">小売・EC</button>
+            <button class="diag-opt" onclick="selectOpt(this)">その他</button>
+          </div>
+        </div>
+
+        <div class="diag-step" data-step="2">
+          <p class="diag-q">現在のWebサイトの課題は何ですか？</p>
+          <div class="diag-options">
+            <button class="diag-opt" onclick="selectOpt(this)">サイトがない・古い</button>
+            <button class="diag-opt" onclick="selectOpt(this)">集客・SEOが弱い</button>
+            <button class="diag-opt" onclick="selectOpt(this)">デザインが古い</button>
+            <button class="diag-opt" onclick="selectOpt(this)">更新が大変</button>
+            <button class="diag-opt" onclick="selectOpt(this)">スマホ対応できていない</button>
+            <button class="diag-opt" onclick="selectOpt(this)">よくわからない</button>
+          </div>
+        </div>
+
+        <div class="diag-step" data-step="3">
+          <p class="diag-q">ご予算の目安を教えてください。</p>
+          <div class="diag-options">
+            <button class="diag-opt" onclick="selectOpt(this)">〜30万円</button>
+            <button class="diag-opt" onclick="selectOpt(this)">30〜50万円</button>
+            <button class="diag-opt" onclick="selectOpt(this)">50〜100万円</button>
+            <button class="diag-opt" onclick="selectOpt(this)">100万円以上</button>
+            <button class="diag-opt" onclick="selectOpt(this)">まだ決まっていない</button>
+          </div>
+        </div>
+
+        <div class="diag-step" data-step="4">
+          <p class="diag-q">公開希望の時期はいつですか？</p>
+          <div class="diag-options">
+            <button class="diag-opt" onclick="selectOpt(this)">できるだけ早く</button>
+            <button class="diag-opt" onclick="selectOpt(this)">1〜2ヶ月以内</button>
+            <button class="diag-opt" onclick="selectOpt(this)">3〜6ヶ月以内</button>
+            <button class="diag-opt" onclick="selectOpt(this)">まだ未定</button>
+          </div>
+        </div>
+
+        <div class="diag-step diag-result" data-step="5">
+          <div class="result-morph-wrap">
+            <img src="/assets/morph_happy.png" alt="Morph result">
+          </div>
+          <div class="result-label">DIAGNOSIS COMPLETE</div>
+          <p class="result-text" id="diagResultText">御社に<br>ぴったりな<strong>STANDARDプラン</strong>を<br>ご提案します。</p>
+          <p class="result-sub" id="diagResultSub">最短1週間での公開が可能です。</p>
+          <div class="result-ctas">
+            <a class="result-cta result-cta-primary" href="#contact" style="background:linear-gradient(135deg,#ff9acc,#a0b0ff);color:#0d0d0d;">
+              無料相談を予約する ↗
+            </a>
+            <a class="result-cta result-cta-secondary" href="#pricing">
+              料金プランを見る
+            </a>
+          </div>
+          <button class="diag-restart" onclick="restartDiag()">もう一度診断する</button>
+        </div>
+      </div>
+
+      <div class="diag-nav" id="diagNav">
+        <button class="diag-back" id="backBtn" onclick="prevStep()" disabled>← 戻る</button>
+        <button class="diag-next" id="nextBtn" onclick="nextStep()" disabled>次へ →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ⑥ WORKS - 実績（Before/After的な成果数値付き）
 ═══════════════════════════════════════════ -->
 <style>
   .works-section {
@@ -2198,381 +2614,6 @@
     </div>
   </div>
 </section>
-
-<!-- ══════════════════════════════════════════
-     ⑥ AI診断（CV①）
-═══════════════════════════════════════════ -->
-<style>
-  .diag-section {
-    background: linear-gradient(180deg, #0d0d0d 0%, #1a1a2a 100%);
-    padding: 120px 40px;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .diag-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 20% 30%, rgba(255,140,180,0.1), transparent 40%),
-                      radial-gradient(circle at 80% 70%, rgba(160,180,255,0.1), transparent 40%);
-    pointer-events: none;
-  }
-
-  .diag-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-  }
-
-  .diag-header {
-    text-align: center;
-    margin-bottom: 48px;
-    position: relative;
-  }
-
-  .diag-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    color: transparent;
-    background: linear-gradient(90deg, #ff9acc, #a0b0ff, #c9a0ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    font-family: 'Inter', sans-serif;
-    margin-bottom: 16px;
-  }
-
-  .diag-title {
-    font-size: clamp(30px, 4vw, 42px);
-    font-weight: 900;
-    line-height: 1.3;
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-
-  .diag-sub {
-    font-size: 14px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.9;
-  }
-
-  .morph-diag {
-    position: absolute;
-    top: -20px;
-    right: 0;
-    width: 110px;
-    animation: charFloat 4s ease-in-out infinite;
-    filter: drop-shadow(0 15px 25px rgba(180,150,220,0.4));
-  }
-
-  .morph-diag img { width: 100%; display: block; }
-
-  .diag-card {
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 24px;
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .diag-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,140,180,0.5), rgba(160,180,255,0.5), transparent);
-  }
-
-  .diag-progress-wrap {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .diag-progress-bar {
-    flex: 1;
-    height: 4px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 99px;
-    overflow: hidden;
-  }
-
-  .diag-progress-fill {
-    height: 100%;
-    width: 20%;
-    background: linear-gradient(90deg, #ff9acc, #a0b0ff, #c9a0ff);
-    border-radius: 99px;
-    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-  }
-
-  .diag-step-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.1em;
-  }
-
-  .diag-steps {
-    position: relative;
-    min-height: 280px;
-  }
-
-  .diag-step {
-    display: none;
-    animation: stepIn 0.4s cubic-bezier(0.4,0,0.2,1);
-  }
-
-  .diag-step.active {
-    display: block;
-  }
-
-  @keyframes stepIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .diag-q {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    line-height: 1.5;
-  }
-
-  .diag-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .diag-opt {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.12);
-    color: white;
-    padding: 14px 18px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 500;
-    font-family: 'Noto Sans JP', sans-serif;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s;
-  }
-
-  .diag-opt:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.3);
-    transform: translateX(4px);
-  }
-
-  .diag-opt.selected {
-    background: linear-gradient(135deg, rgba(255,140,180,0.2), rgba(160,180,255,0.2));
-    border-color: rgba(255,140,180,0.5);
-  }
-
-  .diag-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 32px;
-  }
-
-  .diag-back, .diag-next {
-    background: transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-size: 13px;
-    font-weight: 500;
-    font-family: 'Noto Sans JP', sans-serif;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .diag-back:disabled, .diag-next:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  .diag-back:not(:disabled):hover, .diag-next:not(:disabled):hover {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.4);
-  }
-
-  .diag-next:not(:disabled) {
-    background: linear-gradient(135deg, #ff9acc, #a0b0ff);
-    border-color: transparent;
-    color: #0d0d0d;
-    font-weight: 700;
-  }
-
-  .diag-next:not(:disabled):hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255,140,180,0.3);
-  }
-
-  /* 診断結果 */
-  .diag-result {
-    text-align: center;
-    padding: 24px 0;
-  }
-
-  .result-morph-wrap {
-    width: 180px;
-    margin: 0 auto 20px;
-    animation: bounceIn 0.6s cubic-bezier(0.34,1.56,0.64,1);
-  }
-
-  .result-morph-wrap img { width: 100%; display: block; }
-
-  @keyframes bounceIn {
-    0% { transform: scale(0.3); opacity: 0; }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  .result-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    color: #ff9acc;
-    margin-bottom: 12px;
-  }
-
-  .result-text {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.7;
-    margin-bottom: 8px;
-  }
-
-  .result-text strong {
-    background: linear-gradient(90deg, #ff9acc, #a0b0ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 900;
-  }
-
-  .result-sub {
-    font-size: 13px;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 24px;
-  }
-
-  .diag-restart {
-    display: inline-block;
-    margin-top: 16px;
-    background: none;
-    border: none;
-    color: rgba(255,255,255,0.5);
-    font-size: 12px;
-    cursor: pointer;
-    font-family: 'Noto Sans JP', sans-serif;
-    padding: 8px;
-    transition: color 0.2s;
-  }
-
-  .diag-restart:hover { color: white; }
-</style>
-
-<section class="diag-section">
-  <div class="diag-inner">
-    <div class="diag-header">
-      <span class="diag-tag">AI × DIAGNOSIS</span>
-      <h2 class="diag-title">あなたのWebサイトに<br>何が必要か、AIが診断します。</h2>
-      <p class="diag-sub">4つの質問に答えるだけ。最適なプランを提案します。</p>
-
-      <div class="morph-diag">
-        <img src="/assets/morph_thinking.png" alt="Morph thinking" loading="lazy">
-      </div>
-    </div>
-
-    <div class="diag-card" id="diagCard">
-      <div class="diag-progress-wrap">
-        <div class="diag-progress-bar">
-          <div class="diag-progress-fill" id="progressFill"></div>
-        </div>
-        <span class="diag-step-label" id="stepLabel">1 / 4</span>
-      </div>
-
-      <div class="diag-steps" id="diagSteps">
-        <div class="diag-step active" data-step="1">
-          <p class="diag-q">ビジネスの業種を教えてください。</p>
-          <div class="diag-options">
-            <button class="diag-opt" onclick="selectOpt(this)">飲食・カフェ</button>
-            <button class="diag-opt" onclick="selectOpt(this)">医療・クリニック</button>
-            <button class="diag-opt" onclick="selectOpt(this)">建設・不動産</button>
-            <button class="diag-opt" onclick="selectOpt(this)">IT・テック</button>
-            <button class="diag-opt" onclick="selectOpt(this)">小売・EC</button>
-            <button class="diag-opt" onclick="selectOpt(this)">その他</button>
-          </div>
-        </div>
-
-        <div class="diag-step" data-step="2">
-          <p class="diag-q">現在のWebサイトの課題は何ですか？</p>
-          <div class="diag-options">
-            <button class="diag-opt" onclick="selectOpt(this)">サイトがない・古い</button>
-            <button class="diag-opt" onclick="selectOpt(this)">集客・SEOが弱い</button>
-            <button class="diag-opt" onclick="selectOpt(this)">デザインが古い</button>
-            <button class="diag-opt" onclick="selectOpt(this)">更新が大変</button>
-            <button class="diag-opt" onclick="selectOpt(this)">スマホ対応できていない</button>
-            <button class="diag-opt" onclick="selectOpt(this)">よくわからない</button>
-          </div>
-        </div>
-
-        <div class="diag-step" data-step="3">
-          <p class="diag-q">ご予算の目安を教えてください。</p>
-          <div class="diag-options">
-            <button class="diag-opt" onclick="selectOpt(this)">〜30万円</button>
-            <button class="diag-opt" onclick="selectOpt(this)">30〜50万円</button>
-            <button class="diag-opt" onclick="selectOpt(this)">50〜100万円</button>
-            <button class="diag-opt" onclick="selectOpt(this)">100万円以上</button>
-            <button class="diag-opt" onclick="selectOpt(this)">まだ決まっていない</button>
-          </div>
-        </div>
-
-        <div class="diag-step" data-step="4">
-          <p class="diag-q">公開希望の時期はいつですか？</p>
-          <div class="diag-options">
-            <button class="diag-opt" onclick="selectOpt(this)">できるだけ早く</button>
-            <button class="diag-opt" onclick="selectOpt(this)">1〜2ヶ月以内</button>
-            <button class="diag-opt" onclick="selectOpt(this)">3〜6ヶ月以内</button>
-            <button class="diag-opt" onclick="selectOpt(this)">まだ未定</button>
-          </div>
-        </div>
-
-        <div class="diag-step diag-result" data-step="5">
-          <div class="result-morph-wrap">
-            <img src="/assets/morph_happy.png" alt="Morph result">
-          </div>
-          <div class="result-label">DIAGNOSIS COMPLETE</div>
-          <p class="result-text">あなたのビジネスには<br><strong>AIスタンダードプラン</strong>が最適です。</p>
-          <p class="result-sub">最短1週間での公開が可能です。</p>
-          <a class="btn-primary" href="#contact" style="background:linear-gradient(135deg,#ff9acc,#a0b0ff);color:#0d0d0d;font-weight:700;">
-            無料で相談してみる ↗
-          </a>
-          <button class="diag-restart" onclick="restartDiag()">もう一度診断する</button>
-        </div>
-      </div>
-
-      <div class="diag-nav" id="diagNav">
-        <button class="diag-back" id="backBtn" onclick="prevStep()" disabled>← 戻る</button>
-        <button class="diag-next" id="nextBtn" onclick="nextStep()" disabled>次へ →</button>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ══════════════════════════════════════════
      ⑦ PROCESS - フロー（安心）
 ═══════════════════════════════════════════ -->
@@ -4060,6 +4101,8 @@
     }
     .diag-card { padding: 28px 22px; }
     .diag-options { grid-template-columns: 1fr; }
+    .result-ctas { flex-direction: column; }
+    .result-cta { font-size: 13px; padding: 12px 24px; }
 
     /* プロセス */
     .proc-section { padding: 80px 24px; }
@@ -4402,12 +4445,46 @@ function showStep(n) {
   updateProgress();
 }
 
+function generateDiagnosisResult() {
+  const industry = selections[1] || '御社の';
+  const problem = selections[2] || '';
+  const budget = selections[3] || '';
+  const timeline = selections[4] || '';
+
+  let recommendedPlan = 'STANDARD';
+  if (budget.includes('〜30万') || budget.includes('30〜50万')) {
+    recommendedPlan = 'STARTER';
+  } else if (budget.includes('50〜100万')) {
+    recommendedPlan = 'STANDARD';
+  } else if (budget.includes('100万円以上')) {
+    recommendedPlan = 'PREMIUM';
+  }
+
+  const resultText = document.getElementById('diagResultText');
+  const resultSub = document.getElementById('diagResultSub');
+
+  if (resultText) {
+    resultText.innerHTML = `${industry}に<br>ぴったりな<strong>${recommendedPlan}</strong>プランを<br>ご提案します。`;
+  }
+
+  if (resultSub) {
+    if (timeline.includes('できるだけ早く')) {
+      resultSub.textContent = '最短1週間での公開が可能です。';
+    } else if (timeline.includes('1〜2ヶ月')) {
+      resultSub.textContent = '1〜2ヶ月での公開プロジェクトに最適なプランです。';
+    } else {
+      resultSub.textContent = 'お客様のペースに合わせた制作が可能です。';
+    }
+  }
+}
+
 function nextStep() {
   if (currentStep < totalSteps) {
     currentStep++;
     showStep(currentStep);
   } else {
     currentStep = 5;
+    generateDiagnosisResult();
     showStep(5);
   }
 }
